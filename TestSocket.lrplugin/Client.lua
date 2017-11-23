@@ -15,6 +15,7 @@ function ExecuteFunction(myString)
 	
 	--TEST Umgebung
 
+	sfdgsdfgddfadsfdsf
 	
 	--[[
     -- Fakultaet(message)
@@ -120,11 +121,11 @@ function ExecuteFunction(myString)
 	elseif Befehl == "SatMagenta0" 	then LrDevelopController.setValue("SatMagenta",	0)
 	elseif Befehl == "LumMagenta0" 	then LrDevelopController.setValue("LumMagenta",0)  
 
-	elseif Befehl == "Rate1" 		then LrSelection.setRating( )  
-	elseif Befehl == "Rate2" 		then LrSelection.setRating( rating )  
-	elseif Befehl == "Rate3" 		then LrSelection.setRating( rating )  
-	elseif Befehl == "Rate4" 		then LrSelection.setRating( rating ) 
-	elseif Befehl == "Rate5" 		then LrSelection.setRating( rating )  
+	elseif Befehl == "Rate1" 		then LrSelection.setRating()  
+	elseif Befehl == "Rate2" 		then LrSelection.setRating()  
+	elseif Befehl == "Rate3" 		then LrSelection.setRating()  
+	elseif Befehl == "Rate4" 		then LrSelection.setRating() 
+	elseif Befehl == "Rate5" 		then LrSelection.setRating()  
     
 	else    print("Kein Befehl erkannt")
 	end
