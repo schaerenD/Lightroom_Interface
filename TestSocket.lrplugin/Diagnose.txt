@@ -1,12 +1,17 @@
-Plug-in error log for plug-in at: C:\Users\Chris\Dropbox\Ligthroom_Projekt\03_Software\01_Lua\TestSocket.lrplugin
+Plug-in error log for plug-in at: O:\Software\GitHub\02_Lightroom_Interface\Lightroom_Interface\TestSocket.lrplugin
 
 **** Error 1
 
 Beim AusfÃ¼hren eines Skripts des Zusatzmoduls ist ein Fehler aufgetreten.
-Could not find the native function 
+Client.lua:118: unexpected symbol near 'Â'
 
 **** Error 2
 
-Beim Versuch, dieses Zusatzmodul zu beenden, ist ein Fehler aufgetreten.
-Could not find the native function 
+Beim Starten dieses Zusatzmoduls ist ein Fehler aufgetreten.
+Client.lua:118: unexpected symbol near 'Â'
+
+**** Error 3
+
+FÃ¼r dieses Zusatzmodul konnte kein MenÃ¼befehl hinzugefÃ¼gt werden.
+Client.lua:118: unexpected symbol near 'Â'
 
