@@ -5,6 +5,43 @@ local LrDialogs = import 'LrDialogs'
 
 local LrDevelopController = import 'LrDevelopController'
 
+----------------- Global Variabel  ----------------
+Wert    = "NIL"
+Befehl  = "NIL"
+----------------- Global Variabel  ----------------
+
+----------------- Match Function  -----------------
+
+function MatchString(myString)
+    
+  
+ local i = 0
+ local Befehlswert = {}
+
+ 
+    for word in string.gmatch(myString, '([^:]+)') do
+       Befehlswert[i] = word
+       i = i + 1
+    end
+    
+    Befehl = Befehlswert[0]
+    Wert = Befehlswert[1]
+    
+    return "Done"
+    
+end
+
+----------------- Match Function  -----------------
+
+----------------- Test Function  ------------------
+
+function TestFunction(myString)
+
+	LrDialogs.message( "Das hat geklappt", myString, "info" )
+
+end
+----------------- Test Function  ------------------
+
 -- Receiver Socket Task
 --
 LrTasks.startAsyncTask( 
@@ -33,9 +70,10 @@ LrTasks.startAsyncTask(
 				--Funktion OnMessage()
 				onMessage = function( socket, message )
 					
-					LrDialogs.message( "Text", "4242", "info" )
-					if message =="+" then LrDevelopController.increment ( "Exposure" ) end
-					if message =="-" then LrDevelopController.decrement ( "Exposure" ) end	
+					TestFunction("Juderl Hui")
+					--LrDialogs.message( "Text", "4242", "info" )
+					--if message =="+" then LrDevelopController.increment ( "Exposure" ) end
+					--if message =="-" then LrDevelopController.decrement ( "Exposure" ) end	
 				end,
 				
 				--Funktion OnClosed()
@@ -61,6 +99,13 @@ LrTasks.startAsyncTask(
 	)
 end 
 )
+
+
+
+
+
+
+
 --Sender Socket Task
 --
 --LrTasks.startAsyncTask( 
