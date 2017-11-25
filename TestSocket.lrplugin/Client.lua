@@ -14,8 +14,12 @@ Befehl  = "NIL"
 function ExecuteFunction(myString)
 	
 	--TEST Umgebung
-
-	sfdgsdfgddfadsfdsf
+	if     Befehl == "Contrast+" 	then LrDevelopController.increment("Contrast",Wert)                              
+	elseif Befehl == "Shadows+" 	then LrDevelopController.increment("Shadows",Wert)        
+	elseif Befehl == "Whites+" 		then LrDevelopController.increment("Whites",Wert)        
+	elseif Befehl == "Blacks+" 		then LrDevelopController.increment("Blacks",Wert)        
+	else 	Befehl == "Highligths+" 	then LrDevelopController.increment("Highlights",Wert)
+	
 	
 	--[[
     -- Fakultaet(message)
@@ -194,8 +198,6 @@ LrTasks.startAsyncTask(
 				onMessage = function( socket, message )
 					
 					MatchString(message)
-					
-					
 					TestFunction(Wert)
 					TestFunction(Befehl)
 
