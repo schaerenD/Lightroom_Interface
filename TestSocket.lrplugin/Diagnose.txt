@@ -3,15 +3,50 @@ Plug-in error log for plug-in at: O:\Software\GitHub\02_Lightroom_Interface\Ligh
 **** Error 1
 
 Beim Ausführen eines Skripts des Zusatzmoduls ist ein Fehler aufgetreten.
-Client.lua:118: unexpected symbol near '�'
+Client.lua:21: '=' expected near '=='
 
 **** Error 2
 
 Beim Starten dieses Zusatzmoduls ist ein Fehler aufgetreten.
-Client.lua:118: unexpected symbol near '�'
+Client.lua:21: '=' expected near '=='
 
 **** Error 3
 
 Für dieses Zusatzmodul konnte kein Menübefehl hinzugefügt werden.
-Client.lua:118: unexpected symbol near '�'
+Client.lua:21: '=' expected near '=='
+
+**** Error 4
+
+Beim Ausführen eines Skripts des Zusatzmoduls ist ein Fehler aufgetreten.
+Could not find the native function 
+
+**** Error 5
+
+Beim Versuch, dieses Zusatzmodul zu beenden, ist ein Fehler aufgetreten.
+Could not find the native function 
+
+**** Error 6
+
+Beim Ausführen eines Skripts des Zusatzmoduls ist ein Fehler aufgetreten.
+Client.lua:21: '=' expected near '=='
+
+**** Error 7
+
+Beim Starten dieses Zusatzmoduls ist ein Fehler aufgetreten.
+Client.lua:21: '=' expected near '=='
+
+**** Error 8
+
+Für dieses Zusatzmodul konnte kein Menübefehl hinzugefügt werden.
+Client.lua:21: '=' expected near '=='
+
+**** Error 9
+
+Beim Ausführen eines Skripts des Zusatzmoduls ist ein Fehler aufgetreten.
+Could not find the native function 
+
+**** Error 10
+
+Beim Versuch, dieses Zusatzmodul zu beenden, ist ein Fehler aufgetreten.
+Could not find the native function 
 

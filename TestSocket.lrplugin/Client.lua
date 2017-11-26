@@ -11,17 +11,8 @@ Befehl  = "NIL"
 ----------------- Global Variabel  ----------------
 ----------------- Execute Function  ---------------
 
-function ExecuteFunction(myString)
+function ExecuteFunction()
 	
-	--TEST Umgebung
-	if     Befehl == "Contrast+" 	then LrDevelopController.increment("Contrast",Wert)                              
-	elseif Befehl == "Shadows+" 	then LrDevelopController.increment("Shadows",Wert)        
-	elseif Befehl == "Whites+" 		then LrDevelopController.increment("Whites",Wert)        
-	elseif Befehl == "Blacks+" 		then LrDevelopController.increment("Blacks",Wert)        
-	else 	Befehl == "Highligths+" 	then LrDevelopController.increment("Highlights",Wert)
-	
-	
-	--[[
     -- Fakultaet(message)
 	if     Befehl == "Contrast+" 	then LrDevelopController.increment("Contrast",Wert)                              
 	elseif Befehl == "Shadows+" 	then LrDevelopController.increment("Shadows",Wert)        
@@ -125,17 +116,18 @@ function ExecuteFunction(myString)
 	elseif Befehl == "SatMagenta0" 	then LrDevelopController.setValue("SatMagenta",	0)
 	elseif Befehl == "LumMagenta0" 	then LrDevelopController.setValue("LumMagenta",0)  
 
-	elseif Befehl == "Rate1" 		then LrSelection.setRating()  
-	elseif Befehl == "Rate2" 		then LrSelection.setRating()  
-	elseif Befehl == "Rate3" 		then LrSelection.setRating()  
-	elseif Befehl == "Rate4" 		then LrSelection.setRating() 
-	elseif Befehl == "Rate5" 		then LrSelection.setRating()  
+	elseif Befehl == "Rate0" 		then LrSelection.setRating(0)  
+	elseif Befehl == "Rate1" 		then LrSelection.setRating(1)  
+	elseif Befehl == "Rate2" 		then LrSelection.setRating(2)  
+	elseif Befehl == "Rate3" 		then LrSelection.setRating(3) 
+	elseif Befehl == "Rate4" 		then LrSelection.setRating(4)
+	elseif Befehl == "Rate5" 		then LrSelection.setRating(5)    
     
-	else    print("Kein Befehl erkannt")
+	else    LrDialogs.message( "Das hat geklappt", TestString, "info" )
 	end
 
 end
-]]
+
 ----------------- Execute Function  ---------------
 ----------------- Match Function  -----------------
 
@@ -168,7 +160,21 @@ function TestFunction(TestString)
 
 end
 ----------------- Test Function  ------------------
+-------------- ASCIItoChar Function  --------------
 
+function ASCIItoChar(WertASCII)
+	
+	local WertChar = {}
+	local i = 0
+
+	 for word in string.gmatch(WertASCII, '([^:]+)') do
+		WertChar[i] = word
+		i = i + 1
+	 end
+
+	end
+	
+-------------- ASCIItoChar Function  --------------
 -- Receiver Socket Task
 --
 LrTasks.startAsyncTask( 
@@ -191,15 +197,18 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:1", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
 				onMessage = function( socket, message )
 					
 					MatchString(message)
-					TestFunction(Wert)
-					TestFunction(Befehl)
+					----TestFunction(Befehl)
+					----TestFunction(Wert)
+					LrDialogs.showBezel( Befehl, 2 )
+					ExecuteFunction()
+
 
 					--LrDialogs.message( "Text", "4242", "info" )
 					--if message =="+" then LrDevelopController.increment ( "Exposure" ) end
