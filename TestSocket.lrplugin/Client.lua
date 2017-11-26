@@ -167,7 +167,7 @@ function ASCIItoChar(WertASCII)
 	local WertChar = {}
 	local i = 0
 
-	 for word in string.gmatch(WertASCII, '([^:]+)') do
+	 for word in string.match(WertASCII, '%d') do
 		WertChar[i] = word
 		i = i + 1
 	 end
