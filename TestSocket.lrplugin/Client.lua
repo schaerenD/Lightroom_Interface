@@ -6,125 +6,128 @@ local LrDialogs = import 'LrDialogs'
 local LrDevelopController = import 'LrDevelopController'
 
 ----------------- Global Variabel  ----------------
-Wert    = "NIL"
-Befehl  = "NIL" 
+WertString    	= "NIL"
+BefehlString  	= "NIL"
+WertChar 		= 0 
 ----------------- Global Variabel  ----------------
 ----------------- Execute Function  ---------------
 
 function ExecuteFunction()
 	
     -- Fakultaet(message)
-	if     Befehl == "Contrast+" 	then LrDevelopController.increment("Contrast",Wert)                              
-	elseif Befehl == "Shadows+" 	then LrDevelopController.increment("Shadows",Wert)        
-	elseif Befehl == "Whites+" 		then LrDevelopController.increment("Whites",Wert)        
-	elseif Befehl == "Blacks+" 		then LrDevelopController.increment("Blacks",Wert)        
-	elseif Befehl == "Highligths+" 	then LrDevelopController.increment("Highlights",Wert)        
-	elseif Befehl == "Exposure+" 	then LrDevelopController.increment("Exposure",Wert)        
-	elseif Befehl == "Clarity+" 	then LrDevelopController.increment("Clarity",Wert)        
-	elseif Befehl == "Vibrance+" 	then LrDevelopController.increment("Vibrance",Wert)        
-	elseif Befehl == "Saturation+" 	then LrDevelopController.increment("Saturation",Wert)        
-	elseif Befehl == "HueRed+" 		then LrDevelopController.increment("HueRed",Wert)        
-	elseif Befehl == "SatRed+" 		then LrDevelopController.increment("SatRed",Wert)        
-	elseif Befehl == "LumRed+" 		then LrDevelopController.increment("LumRed",Wert)        
-	elseif Befehl == "HueOrange+" 	then LrDevelopController.increment("HueOrange",Wert)        
-	elseif Befehl == "SatOrange+" 	then LrDevelopController.increment("SatOrange",Wert)        
-	elseif Befehl == "LumOrange+" 	then LrDevelopController.increment("LumOrange",Wert)        
-	elseif Befehl == "HueYellow+" 	then LrDevelopController.increment("HueYellow",Wert)        
-	elseif Befehl == "SatYellow+" 	then LrDevelopController.increment("SatYellow",Wert)
-	elseif Befehl == "LumYellow+" 	then LrDevelopController.increment("LumYellow",Wert)
-	elseif Befehl == "HueGreen+" 	then LrDevelopController.increment("HueGreen",Wert)
-	elseif Befehl == "SatGreen+" 	then LrDevelopController.increment("SatGreen",Wert)
-	elseif Befehl == "LumGreen+" 	then LrDevelopController.increment("LumGreen",Wert)
-	elseif Befehl == "HueAqua+" 	then LrDevelopController.increment("HueAqua",Wert)
-	elseif Befehl == "SatAqua+"		then LrDevelopController.increment("SatAqua",Wert)
-	elseif Befehl == "LumAqua+" 	then LrDevelopController.increment("LumAqua",Wert)
-	elseif Befehl == "HueBlue+" 	then LrDevelopController.increment("HueBlue",Wert)
-	elseif Befehl == "SatBlue+"		then LrDevelopController.increment("SatBlue",Wert)
-	elseif Befehl == "LumBlue+" 	then LrDevelopController.increment("LumBlue",Wert)
-	elseif Befehl == "HuePurple+" 	then LrDevelopController.increment("HuePurple",Wert)
-	elseif Befehl == "SatPurple+" 	then LrDevelopController.increment("SatPurple",Wert)        
-	elseif Befehl == "LumPurple+" 	then LrDevelopController.increment("LumPurple",Wert)
-	elseif Befehl == "HueMagenta+" 	then LrDevelopController.increment("HueMagenta",Wert)
-	elseif Befehl == "SatMagenta+" 	then LrDevelopController.increment("SatMagenta",Wert)
-	elseif Befehl == "LumMagenta+" 	then LrDevelopController.increment("LumMagenta",Wert)
+	if     BefehlString == "Contrast+" 			then LrApplicationView.switchToModule('develop') LrDevelopController.increment("Contrast",4)                              
+	elseif BefehlString == "Shadows+" 			then LrDevelopController.increment("Shadows",WertChar)        
+	elseif BefehlString == "Whites+" 			then LrDevelopController.increment("Whites",WertChar)        
+	elseif BefehlString == "Blacks+" 			then LrDevelopController.increment("Blacks",WertChar)        
+	elseif BefehlString == "Highligths+" 		then LrDevelopController.increment("Highlights",WertChar)        
+	elseif BefehlString == "Exposure+" 			then LrDevelopController.increment("Exposure",WertChar)        
+	elseif BefehlString == "Clarity+" 			then LrDevelopController.increment("Clarity",WertChar)        
+	elseif BefehlString == "Vibrance+" 			then LrDevelopController.increment("Vibrance",WertChar)        
+	elseif BefehlString == "Saturation+" 		then LrDevelopController.increment("Saturation",WertChar)        			
+	elseif BefehlString == "HueRed+" 			then LrDevelopController.increment("HueRed",WertChar)        
+	elseif BefehlString == "SatRed+" 			then LrDevelopController.increment("SatRed",WertChar)        
+	elseif BefehlString == "LumRed+" 			then LrDevelopController.increment("LumRed",WertChar)        
+	elseif BefehlString == "HueOrange+" 		then LrDevelopController.increment("HueOrange",WertChar)        
+	elseif BefehlString == "SatOrange+" 		then LrDevelopController.increment("SatOrange",WertChar)        
+	elseif BefehlString == "LumOrange+" 		then LrDevelopController.increment("LumOrange",WertChar)        
+	elseif BefehlString == "HueYellow+" 		then LrDevelopController.increment("HueYellow",WertChar)        
+	elseif BefehlString == "SatYellow+" 		then LrDevelopController.increment("SatYellow",WertChar)
+	elseif BefehlString == "LumYellow+" 		then LrDevelopController.increment("LumYellow",WertChar)
+	elseif BefehlString == "HueGreen+" 			then LrDevelopController.increment("HueGreen",WertChar)
+	elseif BefehlString == "SatGreen+" 			then LrDevelopController.increment("SatGreen",WertChar)
+	elseif BefehlString == "LumGreen+" 			then LrDevelopController.increment("LumGreen",WertChar)
+	elseif BefehlString == "HueAqua+" 			then LrDevelopController.increment("HueAqua",WertChar)
+	elseif BefehlString == "SatAqua+"			then LrDevelopController.increment("SatAqua",WertChar)
+	elseif BefehlString == "LumAqua+" 			then LrDevelopController.increment("LumAqua",WertChar)
+	elseif BefehlString == "HueBlue+" 			then LrDevelopController.increment("HueBlue",WertChar)
+	elseif BefehlString == "SatBlue+"			then LrDevelopController.increment("SatBlue",WertChar)
+	elseif BefehlString == "LumBlue+" 			then LrDevelopController.increment("LumBlue",WertChar)
+	elseif BefehlString == "HuePurple+" 		then LrDevelopController.increment("HuePurple",WertChar)
+	elseif BefehlString == "SatPurple+" 		then LrDevelopController.increment("SatPurple",WertChar)        
+	elseif BefehlString == "LumPurple+" 		then LrDevelopController.increment("LumPurple",WertChar)
+	elseif BefehlString == "HueMagenta+" 		then LrDevelopController.increment("HueMagenta",WertChar)
+	elseif BefehlString == "SatMagenta+" 		then LrDevelopController.increment("SatMagenta",WertChar)
+	elseif BefehlString == "LumMagenta+" 		then LrDevelopController.increment("LumMagenta",WertChar)
 	
-	elseif Befehl == "Contrast-" 	then LrDevelopController.decrement("Contrast",Wert)        
-	elseif Befehl == "Shadows-" 	then LrDevelopController.decrement("Shadows",Wert)        
-	elseif Befehl == "Blacks-" 		then LrDevelopController.decrement("Blacks",Wert)        
-	elseif Befehl == "Whites-" 		then LrDevelopController.decrement("Whites",Wert)        
-	elseif Befehl == "Highligths-" 	then LrDevelopController.decrement("Highlights",Wert)        
-	elseif Befehl == "Exposure-" 	then LrDevelopController.decrement("Exposure",Wert)        
-	elseif Befehl == "Clarity-" 	then LrDevelopController.decrement("Clarity",Wert)        
-	elseif Befehl == "Vibrance-" 	then LrDevelopController.decrement("Vibrance",Wert)        
-	elseif Befehl == "Saturation-" 	then LrDevelopController.decrement("Saturation",Wert)        
-	elseif Befehl == "HueRed-" 		then LrDevelopController.decrement("HueRed",Wert)        
-	elseif Befehl == "SatRed-" 		then LrDevelopController.decrement("SatRed",Wert)        
-	elseif Befehl == "LumRed-" 		then LrDevelopController.decrement("LumRed",Wert)        
-	elseif Befehl == "HueOrange-" 	then LrDevelopController.decrement("HueOrange",Wert)        
-	elseif Befehl == "SatOrange-" 	then LrDevelopController.decrement("SatOrange",Wert)        
-	elseif Befehl == "LumOrange-" 	then LrDevelopController.decrement("LumOrange",Wert)        
-	elseif Befehl == "HueYellow-" 	then LrDevelopController.decrement("HueYellow",Wert)        
-	elseif Befehl == "SatYellow-" 	then LrDevelopController.decrement("SatYellow",Wert)
-	elseif Befehl == "LumYellow-" 	then LrDevelopController.decrement("LumYellow",Wert)
-	elseif Befehl == "HueGreen-" 	then LrDevelopController.decrement("HueGreen",Wert)
-	elseif Befehl == "SatGreen-" 	then LrDevelopController.decrement("SatGreen",Wert)
-	elseif Befehl == "LumGreen-" 	then LrDevelopController.decrement("LumGreen",Wert)
-	elseif Befehl == "HueAqua-" 	then LrDevelopController.decrement("HueAqua",Wert)
-	elseif Befehl == "SatAqua-" 	then LrDevelopController.decrement("SatAqua",Wert)
-	elseif Befehl == "LumAqua-" 	then LrDevelopController.decrement("LumAqua",Wert)
-	elseif Befehl == "HueBlue-" 	then LrDevelopController.decrement("HueBlue",Wert)
-	elseif Befehl == "SatBlue-" 	then LrDevelopController.decrement("SatBlue",Wert)
-	elseif Befehl == "LumBlue-" 	then LrDevelopController.decrement("LumBlue",Wert)
-	elseif Befehl == "HuePurple-"	then LrDevelopController.decrement("HuePurple",Wert)
-	elseif Befehl == "SatPurple-" 	then LrDevelopController.decrement("SatPurple",Wert)        
-	elseif Befehl == "LumPurple-" 	then LrDevelopController.decrement("LumPurple",Wert)
-	elseif Befehl == "HueMagenta-" 	then LrDevelopController.decrement("HueMagenta",Wert)
-	elseif Befehl == "SatMagenta-" 	then LrDevelopController.decrement("SatMagenta",Wert)
-	elseif Befehl == "LumMagenta-" 	then LrDevelopController.decrement("LumMagenta",Wert)
+	elseif BefehlString == "Contrast-" 			then LrDevelopController.decrement("Contrast",WertChar)        
+	elseif BefehlString == "Shadows-" 			then LrDevelopController.decrement("Shadows",WertChar)        
+	elseif BefehlString == "Blacks-" 			then LrDevelopController.decrement("Blacks",WertChar)        
+	elseif BefehlString == "Whites-" 			then LrDevelopController.decrement("Whites",WertChar)        
+	elseif BefehlString == "Highligths-" 		then LrDevelopController.decrement("Highlights",WertChar)        
+	elseif BefehlString == "Exposure-" 			then LrDevelopController.decrement("Exposure",WertChar)        
+	elseif BefehlString == "Clarity-" 			then LrDevelopController.decrement("Clarity",WertChar)        
+	elseif BefehlString == "Vibrance-" 			then LrDevelopController.decrement("Vibrance",WertChar)        
+	elseif BefehlString == "Saturation-" 		then LrDevelopController.decrement("Saturation",WertChar)        
+	elseif BefehlString == "HueRed-" 			then LrDevelopController.decrement("HueRed",WertChar)        
+	elseif BefehlString == "SatRed-" 			then LrDevelopController.decrement("SatRed",WertChar)        
+	elseif BefehlString == "LumRed-" 			then LrDevelopController.decrement("LumRed",WertChar)        
+	elseif BefehlString == "HueOrange-" 		then LrDevelopController.decrement("HueOrange",WertChar)        
+	elseif BefehlString == "SatOrange-" 		then LrDevelopController.decrement("SatOrange",WertChar)        
+	elseif BefehlString == "LumOrange-" 		then LrDevelopController.decrement("LumOrange",WertChar)        
+	elseif BefehlString == "HueYellow-" 		then LrDevelopController.decrement("HueYellow",WertChar)        
+	elseif BefehlString == "SatYellow-" 		then LrDevelopController.decrement("SatYellow",WertChar)
+	elseif BefehlString == "LumYellow-" 		then LrDevelopController.decrement("LumYellow",WertChar)
+	elseif BefehlString == "HueGreen-" 			then LrDevelopController.decrement("HueGreen",WertChar)
+	elseif BefehlString == "SatGreen-" 			then LrDevelopController.decrement("SatGreen",WertChar)
+	elseif BefehlString == "LumGreen-" 			then LrDevelopController.decrement("LumGreen",WertChar)
+	elseif BefehlString == "HueAqua-" 			then LrDevelopController.decrement("HueAqua",WertChar)
+	elseif BefehlString == "SatAqua-"		 	then LrDevelopController.decrement("SatAqua",WertChar)
+	elseif BefehlString == "LumAqua-" 			then LrDevelopController.decrement("LumAqua",WertChar)
+	elseif BefehlString == "HueBlue-" 			then LrDevelopController.decrement("HueBlue",WertChar)
+	elseif BefehlString == "SatBlue-" 			then LrDevelopController.decrement("SatBlue",WertChar)
+	elseif BefehlString == "LumBlue-" 			then LrDevelopController.decrement("LumBlue",WertChar)
+	elseif BefehlString == "HuePurple-"			then LrDevelopController.decrement("HuePurple",WertChar)
+	elseif BefehlString == "SatPurple-" 		then LrDevelopController.decrement("SatPurple",WertChar)        
+	elseif BefehlString == "LumPurple-" 		then LrDevelopController.decrement("LumPurple",WertChar)
+	elseif BefehlString == "HueMagenta-" 		then LrDevelopController.decrement("HueMagenta",WertChar)
+	elseif BefehlString == "SatMagenta-" 		then LrDevelopController.decrement("SatMagenta",WertChar)
+	elseif BefehlString == "LumMagenta-" 		then LrDevelopController.decrement("LumMagenta",WertChar)
 	
-	elseif Befehl == "Contrast0" 	then LrDevelopController.setValue("Contrast",0)        
-	elseif Befehl == "Shadows0" 	then LrDevelopController.setValue("Shadows",0)        
-	elseif Befehl == "Blacks0" 		then LrDevelopController.setValue("Blacks",0)        
-	elseif Befehl == "Whites0" 		then LrDevelopController.setValue("Whites",0)        
-	elseif Befehl == "Highligths0" 	then LrDevelopController.setValue("Highlights",0)        
-	elseif Befehl == "Exposure0" 	then LrDevelopController.setValue("Exposure",0)        
-	elseif Befehl == "Clarity0" 	then LrDevelopController.setValue("Clarity",0)        
-	elseif Befehl == "Vibrance0" 	then LrDevelopController.setValue("Vibrance",0)        
-	elseif Befehl == "Saturation0" 	then LrDevelopController.setValue("Saturation",0)        
-	elseif Befehl == "HueRed0" 		then LrDevelopController.setValue("HueRed",0)        
-	elseif Befehl == "SatRed0" 		then LrDevelopController.setValue("SatRed",0)        
-	elseif Befehl == "LumRed0" 		then LrDevelopController.setValue("LumRed",0)        
-	elseif Befehl == "HueOrange0" 	then LrDevelopController.setValue("HueOrange",0)        
-	elseif Befehl == "SatOrange0" 	then LrDevelopController.setValue("SatOrange",0)        
-	elseif Befehl == "LumOrange0" 	then LrDevelopController.setValue("LumOrange",0)        
-	elseif Befehl == "HueYellow0" 	then LrDevelopController.setValue("HueYellow",0)        
-	elseif Befehl == "SatYellow0" 	then LrDevelopController.setValue("SatYellow",0)
-	elseif Befehl == "LumYellow0" 	then LrDevelopController.setValue("LumYellow",0)
-	elseif Befehl == "HueGreen0" 	then LrDevelopController.setValue("HueGreen",0)
-	elseif Befehl == "SatGreen0"	then LrDevelopController.setValue("SatGreen",0)
-	elseif Befehl == "LumGreen0" 	then LrDevelopController.setValue("LumGreen",0)
-	elseif Befehl == "HueAqua0" 	then LrDevelopController.setValue("HueAqua",0)
-	elseif Befehl == "SatAqua0" 	then LrDevelopController.setValue("SatAqua",0)
-	elseif Befehl == "LumAqua0" 	then LrDevelopController.setValue("LumAqua",0)
-	elseif Befehl == "HueBlue0"		then LrDevelopController.setValue("HueBlue",0)
-	elseif Befehl == "SatBlue0" 	then LrDevelopController.setValue("SatBlue",0)
-	elseif Befehl == "LumBlue0" 	then LrDevelopController.setValue("LumBlue",0)
-	elseif Befehl == "HuePurple0"	then LrDevelopController.setValue("HuePurple",0)
-	elseif Befehl == "SatPurple0" 	then LrDevelopController.setValue("SatPurple",0)        
-	elseif Befehl == "LumPurple0" 	then LrDevelopController.setValue("LumPurple",	0)
-	elseif Befehl == "HueMagenta0" 	then LrDevelopController.setValue("HueMagenta",	0)
-	elseif Befehl == "SatMagenta0" 	then LrDevelopController.setValue("SatMagenta",	0)
-	elseif Befehl == "LumMagenta0" 	then LrDevelopController.setValue("LumMagenta",0)  
+	elseif BefehlString == "Contrast0" 			then LrDevelopController.setValue("Contrast",0)        
+	elseif BefehlString == "Shadows0" 			then LrDevelopController.setValue("Shadows",0)        
+	elseif BefehlString == "Blacks0" 			then LrDevelopController.setValue("Blacks",0)        
+	elseif BefehlString == "Whites0" 			then LrDevelopController.setValue("Whites",0)        
+	elseif BefehlString == "Highligths0" 		then LrDevelopController.setValue("Highlights",0)        
+	elseif BefehlString == "Exposure0" 			then LrDevelopController.setValue("Exposure",0)        
+	elseif BefehlString == "Clarity0" 			then LrDevelopController.setValue("Clarity",0)        
+	elseif BefehlString == "Vibrance0" 			then LrDevelopController.setValue("Vibrance",0)        
+	elseif BefehlString == "Saturation0" 		then LrDevelopController.setValue("Saturation",0)        
+	elseif BefehlString == "HueRed0" 			then LrDevelopController.setValue("HueRed",0)        
+	elseif BefehlString == "SatRed0" 			then LrDevelopController.setValue("SatRed",0)        
+	elseif BefehlString == "LumRed0" 			then LrDevelopController.setValue("LumRed",0)        
+	elseif BefehlString == "HueOrange0" 		then LrDevelopController.setValue("HueOrange",0)        
+	elseif BefehlString == "SatOrange0" 		then LrDevelopController.setValue("SatOrange",0)        
+	elseif BefehlString == "LumOrange0" 		then LrDevelopController.setValue("LumOrange",0)        
+	elseif BefehlString == "HueYellow0" 		then LrDevelopController.setValue("HueYellow",0)        
+	elseif BefehlString == "SatYellow0" 		then LrDevelopController.setValue("SatYellow",0)
+	elseif BefehlString == "LumYellow0" 		then LrDevelopController.setValue("LumYellow",0)
+	elseif BefehlString == "HueGreen0" 			then LrDevelopController.setValue("HueGreen",0)
+	elseif BefehlString == "SatGreen0"			then LrDevelopController.setValue("SatGreen",0)
+	elseif BefehlString == "LumGreen0" 			then LrDevelopController.setValue("LumGreen",0)
+	elseif BefehlString == "HueAqua0" 			then LrDevelopController.setValue("HueAqua",0)
+	elseif BefehlString == "SatAqua0" 			then LrDevelopController.setValue("SatAqua",0)
+	elseif BefehlString == "LumAqua0" 			then LrDevelopController.setValue("LumAqua",0)
+	elseif BefehlString == "HueBlue0"			then LrDevelopController.setValue("HueBlue",0)
+	elseif BefehlString == "SatBlue0" 			then LrDevelopController.setValue("SatBlue",0)
+	elseif BefehlString == "LumBlue0" 			then LrDevelopController.setValue("LumBlue",0)
+	elseif BefehlString == "HuePurple0"			then LrDevelopController.setValue("HuePurple",0)
+	elseif BefehlString == "SatPurple0" 		then LrDevelopController.setValue("SatPurple",0)        
+	elseif BefehlString == "LumPurple0" 		then LrDevelopController.setValue("LumPurple",	0)
+	elseif BefehlString == "HueMagenta0" 		then LrDevelopController.setValue("HueMagenta",	0)
+	elseif BefehlString == "SatMagenta0" 		then LrDevelopController.setValue("SatMagenta",	0)
+	elseif BefehlString == "LumMagenta0" 		then LrDevelopController.setValue("LumMagenta",0)  
 
-	elseif Befehl == "Rate0" 		then LrSelection.setRating(0)  
-	elseif Befehl == "Rate1" 		then LrSelection.setRating(1)  
-	elseif Befehl == "Rate2" 		then LrSelection.setRating(2)  
-	elseif Befehl == "Rate3" 		then LrSelection.setRating(3) 
-	elseif Befehl == "Rate4" 		then LrSelection.setRating(4)
-	elseif Befehl == "Rate5" 		then LrSelection.setRating(5)    
+	elseif BefehlString == "Rate0" 		then LrSelection.setRating(0)  
+	elseif BefehlString == "Rate1" 		then LrSelection.setRating(1)  
+	elseif BefehlString == "Rate2" 		then LrSelection.setRating(2)  
+	elseif BefehlString == "Rate3" 		then LrSelection.setRating(3) 
+	elseif BefehlString == "Rate4" 		then LrSelection.setRating(4)
+	elseif BefehlString == "Rate5" 		then LrSelection.setRating(5)    
     
-	else    LrDialogs.message( "Das hat geklappt", TestString, "info" )
+	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
 	end
+
+	LrDialogs.showBezel( WertChar, 2 )
 
 end
 
@@ -142,10 +145,13 @@ function MatchString(myString)
        BefehlsWert[i] = word
        i = i + 1
     end
-    
-    Befehl = BefehlsWert[0]
-    Wert = BefehlsWert[1]
-    
+	
+	
+    BefehlString = BefehlsWert[0]
+    WertString = BefehlsWert[1]
+	----LrDialogs.message( BefehlString, myString, "info" )
+	----LrDialogs.message( WertString, myString, "info" )
+	
     return "Done"
     
 end
@@ -164,15 +170,38 @@ end
 
 function ASCIItoChar(WertASCII)
 	
-	local WertChar = {}
-	local i = 0
-
-	 for word in string.match(WertASCII, '%d') do
-		WertChar[i] = word
+	local i = 1
+	local q = 1
+	local post = 0
+	local value = {}
+	local ASCIINumber = {}
+	local CharNumber = {}
+	
+	
+	  for zaehler = 1,string.len(WertASCII),1 do
+		value[i] = string.match(WertASCII, '%d', i)
+		ASCIINumber[i] = string.byte(value[i]) - 48
 		i = i + 1
-	 end
+	  end
+	  
+	  for zaehler = 1,(i-1),1 do
+		if       ASCIINumber[q] == 0 then post = 0*10^(i-q-1)
+		elseif   ASCIINumber[q] == 1 then post = 1*10^(i-q-1)
+		elseif   ASCIINumber[q] == 2 then post = 2*10^(i-q-1)
+		elseif   ASCIINumber[q] == 3 then post = 3*10^(i-q-1)
+		elseif   ASCIINumber[q] == 4 then post = 4*10^(i-q-1)
+		elseif   ASCIINumber[q] == 5 then post = 5*10^(i-q-1)
+		elseif   ASCIINumber[q] == 6 then post = 6*10^(i-q-1)
+		elseif   ASCIINumber[q] == 7 then post = 7*10^(i-q-1)
+		elseif   ASCIINumber[q] == 8 then post = 8*10^(i-q-1)
+		else     post = 9*10^(i-q-1)
+		end
+		CharNumber[q] = post
+		WertChar = WertChar + CharNumber[q]
+		q = q + 1
+	  end
 
-	end
+end
 	
 -------------- ASCIItoChar Function  --------------
 -- Receiver Socket Task
@@ -197,16 +226,18 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:1", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:12", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
 				onMessage = function( socket, message )
 					
 					MatchString(message)
-					----TestFunction(Befehl)
+					----TestFunction(BefehlString)
 					----TestFunction(Wert)
-					LrDialogs.showBezel( Befehl, 2 )
+					--LrDialogs.showBezel( BefehlString, 2 )
+					ASCIItoChar(WertString)
+					WertChar = 55
 					ExecuteFunction()
 
 
@@ -230,7 +261,7 @@ LrTasks.startAsyncTask(
 			}
 
 		while running do
-			LrTasks.sleep( 1/3 ) -- seconds
+			LrTasks.sleep( 1/3 ) -- seconds0
 		end
 		LrDialogs.message( "Endlosschlaufe beendet (Socket Task)", "", "info" )
 		receiver:close()
