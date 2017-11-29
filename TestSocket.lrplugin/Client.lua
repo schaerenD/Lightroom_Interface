@@ -2,20 +2,33 @@ local LrSocket = import "LrSocket"
 local LrTasks = import "LrTasks"
 local LrFunctionContext = import "LrFunctionContext"
 local LrDialogs = import 'LrDialogs'
-
 local LrDevelopController = import 'LrDevelopController'
+local LrApplicationView   = import 'LrApplicationView'
 
 ----------------- Global Variabel  ----------------
 WertString    	= "NIL"
 BefehlString  	= "NIL"
 WertChar 		= 0 
 ----------------- Global Variabel  ----------------
+----------- ChangeAdjustPanel Function  -----------
+local valueDevelopt
+
+
+function ExecuteFunction()
+
+end
+
+
+
+----------- ChangeAdjustPanel Function  -----------
 ----------------- Execute Function  ---------------
 
 function ExecuteFunction()
+
+	local valueDevelopt
 	
     -- Fakultaet(message)
-	if     BefehlString == "Contrast+" 			then LrApplicationView.switchToModule('develop') LrDevelopController.increment("Contrast",4)                              
+	if     BefehlString == "Contrast+" 			then valueDevelopt = LrDevelopController.getValue("Contrast"); valueDevelopt = valueDevelopt + WertChar LrDevelopController.setValue("Contrast",valueDevelopt);                             
 	elseif BefehlString == "Shadows+" 			then LrDevelopController.increment("Shadows",WertChar)        
 	elseif BefehlString == "Whites+" 			then LrDevelopController.increment("Whites",WertChar)        
 	elseif BefehlString == "Blacks+" 			then LrDevelopController.increment("Blacks",WertChar)        
@@ -127,7 +140,7 @@ function ExecuteFunction()
 	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
 	end
 
-	LrDialogs.showBezel( WertChar, 2 )
+	----LrDialogs.showBezel( WertChar, 2 )
 
 end
 
@@ -161,7 +174,7 @@ end
 
 function TestFunction(TestString)
 
-	LrDialogs.message( "Das hat geklappt", TestString, "info" )
+	LrDialogs.message( TestString, "Das hat geklappt", "info" )
 	--if message =="Test+" then LrDevelopController.increment ( "Exposure" ) end
 
 end
@@ -177,7 +190,8 @@ function ASCIItoChar(WertASCII)
 	local ASCIINumber = {}
 	local CharNumber = {}
 	
-	
+	  WertChar = 0;
+
 	  for zaehler = 1,string.len(WertASCII),1 do
 		value[i] = string.match(WertASCII, '%d', i)
 		ASCIINumber[i] = string.byte(value[i]) - 48
@@ -226,19 +240,21 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:12", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:25", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
 				onMessage = function( socket, message )
 					
 					MatchString(message)
-					----TestFunction(BefehlString)
-					----TestFunction(Wert)
-					--LrDialogs.showBezel( BefehlString, 2 )
 					ASCIItoChar(WertString)
-					WertChar = 55
+					TestFunction("Bis ASCIItoChar")
+					LrApplicationView.switchToModule('develop')
+					TestFunction("Bis Switch Modul")
 					ExecuteFunction()
+					TestFunction("Bis Execute Function")
+					LrDialogs.showBezel( BefehlString, 2 )
+					TestFunction("Bis Bezel")
 
 
 					--LrDialogs.message( "Text", "4242", "info" )
