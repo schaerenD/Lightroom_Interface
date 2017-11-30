@@ -11,14 +11,23 @@ BefehlString  	= "NIL"
 WertChar 		= 0 
 ----------------- Global Variabel  ----------------
 ----------- ChangeAdjustPanel Function  -----------
-local valueDevelopt
 
+function ChangeAdjustPanel(Groesse,Richtung)
 
-function ExecuteFunction()
+	local valueDevelopt
+
+	LrApplicationView.switchToModule('develop')		-- Change Module
+	LrDevelopController.revealPanel("Contrast")				-- Pop Up Menü
+
+	valueDevelopt = LrDevelopController.getValue(Groesse); 
+	if     	Groesse == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
+	elseif 	Groesse == "negativ" then valueDevelopt = valueDevelopt - WertChar;
+	elseif	Groesse == "zero"	then valueDevelopt = 0;
+	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )	   
+	LrDevelopController.setValue("Contrast",valueDevelopt);
+	
 
 end
-
-
 
 ----------- ChangeAdjustPanel Function  -----------
 ----------------- Execute Function  ---------------
@@ -249,7 +258,7 @@ LrTasks.startAsyncTask(
 					MatchString(message)
 					ASCIItoChar(WertString)
 					TestFunction("Bis ASCIItoChar")
-					LrApplicationView.switchToModule('develop')
+					
 					TestFunction("Bis Switch Modul")
 					ExecuteFunction()
 					TestFunction("Bis Execute Function")
