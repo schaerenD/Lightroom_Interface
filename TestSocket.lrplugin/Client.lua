@@ -12,32 +12,30 @@ WertChar 		= 0
 ----------------- Global Variabel  ----------------
 ----------- ChangeAdjustPanel Function  -----------
 
-function ChangeAdjustPanel(Groesse,Richtung)
+-- function ChangeAdjustPanel(Groesse,Richtung)
 
-	local valueDevelopt
+-- 	local valueDevelopt
 
-	LrApplicationView.switchToModule('develop')		-- Change Module
-	LrDevelopController.revealPanel("Contrast")				-- Pop Up Menü
+-- 	LrApplicationView.switchToModule('develop')		-- Change Module
+-- 	LrDevelopController.revealPanel(Groesse)		-- Pop Up Menü
 
-	valueDevelopt = LrDevelopController.getValue(Groesse); 
-	if     	Groesse == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
-	elseif 	Groesse == "negativ" then valueDevelopt = valueDevelopt - WertChar;
-	elseif	Groesse == "zero"	then valueDevelopt = 0;
-	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )	   
-	LrDevelopController.setValue("Contrast",valueDevelopt);
+-- 	valueDevelopt = LrDevelopController.getValue(Groesse); 
+-- 	if     	Groesse == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
+-- 	elseif 	Groesse == "negativ" then valueDevelopt = valueDevelopt - WertChar;
+-- 	elseif	Groesse == "zero"	 then valueDevelopt = 0;
+-- 	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )	   
+-- 	LrDevelopController.setValue("Contrast",valueDevelopt);
 	
 
-end
+-- end
 
 ----------- ChangeAdjustPanel Function  -----------
 ----------------- Execute Function  ---------------
 
 function ExecuteFunction()
-
-	local valueDevelopt
 	
     -- Fakultaet(message)
-	if     BefehlString == "Contrast+" 			then valueDevelopt = LrDevelopController.getValue("Contrast"); valueDevelopt = valueDevelopt + WertChar LrDevelopController.setValue("Contrast",valueDevelopt);                             
+	if     BefehlString == "Contrast+" 			then LrDevelopController.increment("Shadows",WertChar)   --ChangeAdjustPanel("Contrast","positiv")
 	elseif BefehlString == "Shadows+" 			then LrDevelopController.increment("Shadows",WertChar)        
 	elseif BefehlString == "Whites+" 			then LrDevelopController.increment("Whites",WertChar)        
 	elseif BefehlString == "Blacks+" 			then LrDevelopController.increment("Blacks",WertChar)        
@@ -249,8 +247,8 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:25", "4242", "info" )
-				end,
+					LrDialogs.message( "Connection established Vers.:26", "4242", "info" )
+				end
 				
 				--Funktion OnMessage()
 				onMessage = function( socket, message )
@@ -260,7 +258,7 @@ LrTasks.startAsyncTask(
 					TestFunction("Bis ASCIItoChar")
 					
 					TestFunction("Bis Switch Modul")
-					ExecuteFunction()
+					--ExecuteFunction()
 					TestFunction("Bis Execute Function")
 					LrDialogs.showBezel( BefehlString, 2 )
 					TestFunction("Bis Bezel")
