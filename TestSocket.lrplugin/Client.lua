@@ -4,6 +4,7 @@ local LrFunctionContext = import "LrFunctionContext"
 local LrDialogs = import 'LrDialogs'
 local LrDevelopController = import 'LrDevelopController'
 local LrApplicationView   = import 'LrApplicationView'
+local LrUndo = import 'LrUndo'
 
 ----------------- Global Variabel  ----------------
 WertString    	= "NIL"
@@ -168,7 +169,12 @@ function ExecuteFunction()
 	elseif BefehlString == "Rate2" 		then LrSelection.setRating(2)  
 	elseif BefehlString == "Rate3" 		then LrSelection.setRating(3) 
 	elseif BefehlString == "Rate4" 		then LrSelection.setRating(4)
-	elseif BefehlString == "Rate5" 		then LrSelection.setRating(5)    
+	elseif BefehlString == "Rate5" 		then LrSelection.setRating(5)
+		
+	elseif BefehlString == "Undo" 		then LrUndo.undo()    
+	elseif BefehlString == "Redo" 		then LrUndo.redo()
+		
+	elseif BefehlString == "Test"		then LrSelection.nextPhoto()
     
 	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
 	end
@@ -273,7 +279,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:32", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:34", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
