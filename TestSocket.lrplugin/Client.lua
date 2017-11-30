@@ -6,14 +6,88 @@ local LrDevelopController = import 'LrDevelopController'
 local LrApplicationView   = import 'LrApplicationView'
 local LrUndo = import 'LrUndo'
 
+
 ----------------- Global Variabel  ----------------
 WertString    	= "NIL"
 BefehlString  	= "NIL"
 WertChar 		= 0 
 ----------------- Global Variabel  ----------------
+---------------- ChangeLum Function ---------------
+
+function ChangeLum()
+	
+	LrDialogs.message( "Nothing", "Nothing", "info" )
+	
+end
+	
+
+---------------- ChangeLum Function ---------------
+---------------- ChangeSat Function ---------------
+
+function ChangeSat()
+	
+	LrDialogs.message( "Nothing", "Nothing", "info" )
+	
+end
+	
+
+---------------- ChangeSat Function ---------------
+---------------- ChangeHue Function ---------------
+
+function ChangeHue()
+	
+	LrDialogs.message( "Nothing", "Nothing", "info" )
+	
+end
+	
+---------------- ChangeHue Function ---------------
+------------------ Copy Function ------------------
+
+function Copy()
+	
+	LrDialogs.message( "Nothing", "Nothing", "info" )
+	
+end
+	
+------------------ Copy Function ------------------
+------------------ Paste Function -----------------
+
+function Paste()
+	
+	LrDialogs.message( "Nothing", "Nothing", "info" )
+	
+end
+	
+------------------ Paste Function ------------------
+------------------ Pick Function ------------------
+
+function Pick()
+	
+	LrDialogs.message( "Nothing", "Nothing", "info" )
+	
+end
+	
+------------------ Pick Function ------------------
+----------- switchToFullscreen Function -----------
+
+function switchToFullscreen()
+	
+	local IsDisplayOn
+
+	IsDisplayOn = LrApplicationView.isSecondaryDisplayOn()
+
+	--if	IsDisplayOn == false then LrApplicationView.toggleSecondaryDisplay()					
+	--end							
+
+	LrApplicationView.toggleSecondaryDisplayFullscreen()
+	
+	
+end
+	
+----------- switchToFullscreen Function -----------
+
 
 -------------- ChangeExposure Function ------------
-
 function ChangeExposure(Groesse,Richtung)
 	
 		local valueDevelopt = 0
@@ -25,7 +99,7 @@ function ChangeExposure(Groesse,Richtung)
 		valueDevelopt = 100*valueDevelopt;
 		if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
 		elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
-		elseif	Richtung == "zero"	 then valueDevelopt = 0;
+		elseif	Richtung == "zero"	  then valueDevelopt = 0;
 		else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
 		end
 		valueDevelopt = valueDevelopt/100;	   
@@ -33,6 +107,7 @@ function ChangeExposure(Groesse,Richtung)
 	
 	end
 	
+
 -------------- ChangeExposure Function ------------
 
 ----------- ChangeAdjustPanel Function  -----------
@@ -174,16 +249,27 @@ function ExecuteFunction()
 	elseif BefehlString == "Undo" 		then LrUndo.undo()    
 	elseif BefehlString == "Redo" 		then LrUndo.redo()
 		
-	elseif BefehlString == "Test"		then LrSelection.nextPhoto()
-    
+	elseif BefehlString == "Rigth"		then LrSelection.nextPhoto()
+	elseif BefehlString == "Left"		then LrSelection.previousPhoto()
+	elseif BefehlString == "Up"			then LrSelection.selectFirstPhoto()
+	elseif BefehlString == "Down"		then LrSelection.selectLastPhoto()
+
+	elseif BefehlString == "Pick"		then LrSelection.nextPhoto()
+	elseif BefehlString == "Zoom"		then LrApplicationView.toggleZoom()
+	elseif BefehlString == "Full"		then switchToFullscreen()
+	elseif BefehlString == "Bevor"		then 	LrApplicationView.showView("develop_before")
+	elseif BefehlString == "Devel"		then LrApplicationView.switchToModule('develop')
+		
 	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
 	end
+
+	
 
 	----LrDialogs.showBezel( WertChar, 2 )
 
 end
 
------------------ Execute Function  ---------------
+----------------- Execute Function  --------------- 
 ----------------- Match Function  -----------------
 
 function MatchString(myString)
@@ -279,7 +365,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:34", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:39", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
@@ -290,7 +376,6 @@ LrTasks.startAsyncTask(
 					---TestFunction("Bis ASCIItoChar")
 					---TestFunction(BefehlString)
 					---TestFunction(WertString)
-					LrApplicationView.switchToModule('develop')
 					---TestFunction("Bis Switch Modul")
 					ExecuteFunction()
 					---TestFunction("Bis Execute Function")
