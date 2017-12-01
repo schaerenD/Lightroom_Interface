@@ -15,9 +15,20 @@ WertChar 		= 0
 ---------------- ChangeLum Function ---------------
 
 function ChangeLum()
-	
-	LrDialogs.message( "Nothing", "Nothing", "info" )
-	
+
+	local valueDevelopt = 0
+
+	LrApplicationView.switchToModule('develop')		-- Change Module
+	LrDevelopController.revealPanel(Groesse)		-- Pop Up Menü
+
+	valueDevelopt = LrDevelopController.getValue(Groesse); 
+	if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
+	elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
+	elseif	Richtung == "zero"	 then valueDevelopt = 0;
+	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
+	end	   
+	LrDevelopController.setValue(Groesse,valueDevelopt);
+
 end
 	
 
@@ -25,8 +36,19 @@ end
 ---------------- ChangeSat Function ---------------
 
 function ChangeSat()
-	
-	LrDialogs.message( "Nothing", "Nothing", "info" )
+
+	local valueDevelopt = 0
+
+	LrApplicationView.switchToModule('develop')		-- Change Module
+	LrDevelopController.revealPanel(Groesse)		-- Pop Up Menü
+
+	valueDevelopt = LrDevelopController.getValue(Groesse); 
+	if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
+	elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
+	elseif	Richtung == "zero"	 then valueDevelopt = 0;
+	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
+	end	   
+	LrDevelopController.setValue(Groesse,valueDevelopt);
 	
 end
 	
@@ -36,8 +58,19 @@ end
 
 function ChangeHue()
 	
-	LrDialogs.message( "Nothing", "Nothing", "info" )
-	
+	local valueDevelopt = 0
+
+	LrApplicationView.switchToModule('develop')		-- Change Module
+	LrDevelopController.revealPanel(Groesse)		-- Pop Up Menü
+
+	valueDevelopt = LrDevelopController.getValue(Groesse); 
+	if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
+	elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
+	elseif	Richtung == "zero"	 then valueDevelopt = 0;
+	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
+	end	   
+	LrDevelopController.setValue(Groesse,valueDevelopt);
+
 end
 	
 ---------------- ChangeHue Function ---------------
@@ -46,6 +79,8 @@ end
 function Copy()
 	
 	LrDialogs.message( "Nothing", "Nothing", "info" )
+	
+	--
 	
 end
 	
@@ -63,7 +98,13 @@ end
 
 function Pick()
 	
-	LrDialogs.message( "Nothing", "Nothing", "info" )
+	--local isPicked = 0
+	
+	--isPicked = LrSelection.getFlag() 
+	
+	--if isPicked == false then LrSelection.flagAsPick() 
+	--else LrSelection.removeFlag()
+	--end
 	
 end
 	
