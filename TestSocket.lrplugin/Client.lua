@@ -11,6 +11,40 @@ local LrUndo = import 'LrUndo'
 WertString    	= "NIL"
 BefehlString  	= "NIL"
 WertChar 		= 0 
+
+Contrast		= 0
+Shadows			= 0
+Whites			= 0
+Blacks			= 0
+Highligths		= 0
+Exposure		= 0
+Clarity			= 0
+Vibrance		= 0
+Saturation		= 0
+HueRed			= 0
+SatRed			= 0
+LumRed			= 0
+HueOrange		= 0
+SatOrange		= 0
+LumOrange		= 0
+HueYellow		= 0
+SatYellow		= 0
+LumYellow		= 0
+HueGreen		= 0
+SatGreen		= 0
+LumGreen		= 0
+HueAqua			= 0
+SatAqua			= 0
+LumAqua			= 0
+HueBlue			= 0
+SatBlue			= 0
+LumBlue			= 0
+HuePurple		= 0
+SatPurple		= 0
+LumPurple		= 0
+HueMagenta		= 0
+SatMagenta		= 0
+LumMagenta		= 0
 ----------------- Global Variabel  ----------------
 ---------------- ChangeLum Function ---------------
 
@@ -48,6 +82,40 @@ end
 function Copy()
 	
 	LrDialogs.message( "Nothing", "Nothing", "info" )
+
+	Contrast		= LrDevelopController.getValue("Contrast");
+	Shadows			= LrDevelopController.getValue("Shadows");
+	Whites			= LrDevelopController.getValue("Whites");
+	Blacks			= LrDevelopController.getValue("Blacks");
+	Highligths		= LrDevelopController.getValue("Highligths");
+	Exposure		= LrDevelopController.getValue("Exposure");
+	Clarity			= LrDevelopController.getValue("Clarity");
+	Vibrance		= LrDevelopController.getValue("Vibrance");
+	Saturation		= LrDevelopController.getValue("Saturation");
+	HueRed			= LrDevelopController.getValue("HueAdjustmentRed");
+	SatRed			= LrDevelopController.getValue("SatAdjustmentRed");
+	LumRed			= LrDevelopController.getValue("LumAdjustmentRed");
+	HueOrange		= LrDevelopController.getValue("HueAdjustmentOrange");
+	SatOrange		= LrDevelopController.getValue("SatAdjustmentOrange");
+	LumOrange		= LrDevelopController.getValue("LumAdjustmentOrange");
+	HueYellow		= LrDevelopController.getValue("HueAdjustmentYellow");
+	SatYellow		= LrDevelopController.getValue("SatAdjustmentYellow");
+	LumYellow		= LrDevelopController.getValue("LumAdjustmentYellow");
+	HueGreen		= LrDevelopController.getValue("HueAdjustmentGreen");
+	SatGreen		= LrDevelopController.getValue("SatAdjustmentGreen");
+	LumGreen		= LrDevelopController.getValue("LumAdjustmentGreen");
+	HueAqua			= LrDevelopController.getValue("HueAdjustmentAqua");
+	SatAqua			= LrDevelopController.getValue("SatAdjustmentAqua");
+	LumAqua			= LrDevelopController.getValue("LumAdjustmentAqua");
+	HueBlue			= LrDevelopController.getValue("HueAdjustmentBlue");
+	SatBlue			= LrDevelopController.getValue("SatAdjustmentBlue");
+	LumBlue			= LrDevelopController.getValue("LumAdjustmentBlue");
+	HuePurple		= LrDevelopController.getValue("HueAdjustmentPurple");
+	SatPurple		= LrDevelopController.getValue("SatAdjustmentPurple");
+	LumPurple		= LrDevelopController.getValue("LumAdjustmentPurple");
+	HueMagenta		= LrDevelopController.getValue("HueAdjustmentMagenta");
+	SatMagenta		= LrDevelopController.getValue("SatAdjustmentMagenta");
+	LumMagenta		= LrDevelopController.getValue("LumAdjustmentMagenta");
 	
 	--
 	
@@ -379,7 +447,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:44", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:45", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
