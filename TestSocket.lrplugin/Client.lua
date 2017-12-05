@@ -127,6 +127,40 @@ end
 function Paste()
 	
 	LrDialogs.message( "Nothing", "Nothing", "info" )
+
+	Contrast		= LrDevelopController.setValue("Contrast",Contrast);
+	Shadows			= LrDevelopController.setValue("Shadows",Shadows);
+	Whites			= LrDevelopController.setValue("Whites",Whites);
+	Blacks			= LrDevelopController.setValue("Blacks",Blacks);
+	Highligths		= LrDevelopController.setValue("Highligths",Highligths);
+	Exposure		= LrDevelopController.setValue("Exposure",Exposure);
+	Clarity			= LrDevelopController.setValue("Clarity",Clarity);
+	Vibrance		= LrDevelopController.setValue("Vibrance",Vibrance);
+	Saturation		= LrDevelopController.setValue("Saturation",Saturation);
+	HueRed			= LrDevelopController.setValue("HueAdjustmentRed",HueRed);
+	SatRed			= LrDevelopController.setValue("SatAdjustmentRed",SatRed);
+	LumRed			= LrDevelopController.setValue("LumAdjustmentRed",LumRed);
+	HueOrange		= LrDevelopController.setValue("HueAdjustmentOrange",HueOrange);
+	SatOrange		= LrDevelopController.setValue("SatAdjustmentOrange",SatOrange);
+	LumOrange		= LrDevelopController.setValue("LumAdjustmentOrange",LumOrange);
+	HueYellow		= LrDevelopController.setValue("HueAdjustmentYellow",HueYellow);
+	SatYellow		= LrDevelopController.setValue("SatAdjustmentYellow",SatYellow);
+	LumYellow		= LrDevelopController.setValue("LumAdjustmentYellow",LumYellow);
+	HueGreen		= LrDevelopController.setValue("HueAdjustmentGreen",HueGreen);
+	SatGreen		= LrDevelopController.setValue("SatAdjustmentGreen",SatGreen);
+	LumGreen		= LrDevelopController.setValue("LumAdjustmentGreen",LumGreen);
+	HueAqua			= LrDevelopController.setValue("HueAdjustmentAqua",HueAqua);
+	SatAqua			= LrDevelopController.setValue("SatAdjustmentAqua",SatAqua);
+	LumAqua			= LrDevelopController.setValue("LumAdjustmentAqua",LumAqua);
+	HueBlue			= LrDevelopController.setValue("HueAdjustmentBlue",HueBlue);
+	SatBlue			= LrDevelopController.setValue("SatAdjustmentBlue",SatBlue);
+	LumBlue			= LrDevelopController.setValue("LumAdjustmentBlue",LumBlue);
+	HuePurple		= LrDevelopController.setValue("HueAdjustmentPurple",HuePurple);
+	SatPurple		= LrDevelopController.setValue("SatAdjustmentPurple",SatPurple);
+	LumPurple		= LrDevelopController.setValue("LumAdjustmentPurple",LumPurple);
+	HueMagenta		= LrDevelopController.setValue("HueAdjustmentMagenta",HueMagenta);
+	SatMagenta		= LrDevelopController.setValue("SatAdjustmentMagenta",SatMagenta);
+	LumMagenta		= LrDevelopController.setValue("LumAdjustmentMagenta",LumMagenta);
 	
 end
 	
