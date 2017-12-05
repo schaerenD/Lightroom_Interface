@@ -16,21 +16,8 @@ WertChar 		= 0
 
 function ChangeLum()
 
-	--Es muss legendlich ein Reval gesetzt werden, damit beim umschalten bei Farbkanal Einstellungen, das richtige Menü angezeigt wird.
-
-
-	local valueDevelopt = 0
-
 	LrApplicationView.switchToModule('develop')		-- Change Module
-	LrDevelopController.revealPanel(Groesse)		-- Pop Up Menü
-
-	valueDevelopt = LrDevelopController.getValue(Groesse); 
-	if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
-	elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
-	elseif	Richtung == "zero"	 then valueDevelopt = 0;
-	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
-	end	   
-	LrDevelopController.setValue(Groesse,valueDevelopt);
+	LrDevelopController.revealPanel("LuminanceAdjustmentRed")				-- Pop Up Menü
 
 end
 	
@@ -40,18 +27,8 @@ end
 
 function ChangeSat()
 
-	local valueDevelopt = 0
-
 	LrApplicationView.switchToModule('develop')		-- Change Module
-	LrDevelopController.revealPanel(Groesse)		-- Pop Up Menü
-
-	valueDevelopt = LrDevelopController.getValue(Groesse); 
-	if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
-	elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
-	elseif	Richtung == "zero"	 then valueDevelopt = 0;
-	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
-	end	   
-	LrDevelopController.setValue(Groesse,valueDevelopt);
+	LrDevelopController.revealPanel("SaturationAdjustmentRed")				-- Pop Up Menü
 	
 end
 	
@@ -61,19 +38,8 @@ end
 
 function ChangeHue()
 	
-	local valueDevelopt = 0
-
 	LrApplicationView.switchToModule('develop')		-- Change Module
-	LrDevelopController.revealPanel(Groesse)		-- Pop Up Menü
-
-	valueDevelopt = LrDevelopController.getValue(Groesse); 
-	if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
-	elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
-	elseif	Richtung == "zero"	 then valueDevelopt = 0;
-	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
-	end	   
-	LrDevelopController.setValue(Groesse,valueDevelopt);
-
+	LrDevelopController.revealPanel("HueAdjustmentRed")				-- Pop Up Menü
 end
 	
 ---------------- ChangeHue Function ---------------
@@ -166,7 +132,7 @@ function ChangeAdjustPanel(Groesse,Richtung)
 	valueDevelopt = LrDevelopController.getValue(Groesse); 
 	if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
 	elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
-	elseif	Richtung == "zero"	 then valueDevelopt = 0;
+	elseif	Richtung == "zero"	  then valueDevelopt = 0;
 	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
 	end	   
 	LrDevelopController.setValue(Groesse,valueDevelopt);
@@ -283,6 +249,10 @@ function ExecuteFunction()
 	elseif BefehlString == "SatMagenta0" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","zero")
 	elseif BefehlString == "LumMagenta0" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","zero")  
 
+	elseif BefehlString == "Hue" 		then ChangeLum()  
+	elseif BefehlString == "Sat" 		then ChangeSat()  
+	elseif BefehlString == "Lum" 		then ChangeLum()	
+
 	elseif BefehlString == "Rate0" 		then LrSelection.setRating(0)  
 	elseif BefehlString == "Rate1" 		then LrSelection.setRating(1)  
 	elseif BefehlString == "Rate2" 		then LrSelection.setRating(2)  
@@ -301,7 +271,7 @@ function ExecuteFunction()
 	elseif BefehlString == "Pick"		then LrSelection.nextPhoto()
 	elseif BefehlString == "Zoom"		then LrApplicationView.toggleZoom()
 	elseif BefehlString == "Full"		then switchToFullscreen()
-	elseif BefehlString == "Bevor"		then 	LrApplicationView.showView("develop_before")
+	elseif BefehlString == "Bevor"		then LrApplicationView.showView("develop_before")
 	elseif BefehlString == "Devel"		then LrApplicationView.switchToModule('develop')
 		
 	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
@@ -409,7 +379,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:41", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:44", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
