@@ -64,11 +64,16 @@ function BlackWhite()
 
 end
 
-
 --------------- BlackWhite Function ---------------
 --------------- StartDriver Function --------------
+function StartDriver()
+	
+	local Test
 
-
+	Test = LrTasks.execute("calc")
+	LrDialogs.message( Test, Test, "info" )
+	
+end
 
 --------------- StartDriver Function --------------
 ---------------- ChangeLum Function ---------------
@@ -411,6 +416,8 @@ function ExecuteFunction()
 	elseif BefehlString == "Bevor"		then LrApplicationView.showView("develop_before")
 	elseif BefehlString == "Grid" 		then LrApplicationView.switchToModule('library')
 	elseif BefehlString == "Devel"		then LrApplicationView.switchToModule('develop')
+
+	elseif BefehlString == "Verb"		then StartDriver()
 		
 	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
 	end
@@ -515,7 +522,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:59", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:67", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
