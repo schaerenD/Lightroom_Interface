@@ -4,6 +4,7 @@ local LrFunctionContext = import "LrFunctionContext"
 local LrDialogs = import 'LrDialogs'
 local LrDevelopController = import 'LrDevelopController'
 local LrApplicationView   = import 'LrApplicationView'
+local LrSelection = import 'LrSelection'
 local LrUndo = import 'LrUndo'
 
 
@@ -81,8 +82,6 @@ end
 ------------------ Copy Function ------------------
 
 function Copy()
-	
-	LrDialogs.message( "Nothing", "Nothing", "info" )
 
 	Contrast		= LrDevelopController.getValue("Contrast");
 	Temp			= LrDevelopController.getValue("Temperature");
@@ -127,8 +126,6 @@ end
 ------------------ Paste Function -----------------
 
 function Paste()
-	
-	LrDialogs.message( "Nothing", "Nothing", "info" )
     
 	LrDevelopController.setValue("Contrast",Contrast);
 	LrDevelopController.setValue("Temperature",Temp);
@@ -172,13 +169,16 @@ end
 
 function Pick()
 	
-	--local isPicked = 0
+	local isPicked = 0
 	
-	--isPicked = LrSelection.getFlag() 
+	isPicked = LrSelection.getFlag() 
+
+	---- LrDialogs.message( isPicked, isPicked, "info" )
 	
-	--if isPicked == false then LrSelection.flagAsPick() 
-	--else LrSelection.removeFlag()
-	--end
+	if isPicked == 0 then LrSelection.flagAsPick()
+	elseif isPicked == 1 then LrSelection.flagAsReject()
+	else LrSelection.removeFlag()
+	end
 	
 end
 	
@@ -378,7 +378,7 @@ function ExecuteFunction()
 
 	elseif BefehlString == "Copy" 		then Copy()
 	elseif BefehlString == "Paste" 		then Paste()
-	elseif BefehlString == "Pick"		then LrSelection.nextPhoto()
+	elseif BefehlString == "Pick"		then Pick()
 	elseif BefehlString == "Zoom"		then LrApplicationView.toggleZoom()
 	elseif BefehlString == "Full"		then switchToFullscreen()
 	elseif BefehlString == "Bevor"		then LrApplicationView.showView("develop_before")
@@ -487,7 +487,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:49", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:56", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
