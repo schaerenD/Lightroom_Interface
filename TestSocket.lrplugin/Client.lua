@@ -13,6 +13,7 @@ BefehlString  	= "NIL"
 WertChar 		= 0 
 
 Contrast		= 0
+Temp			= 0
 Shadows			= 0
 Whites			= 0
 Blacks			= 0
@@ -84,6 +85,7 @@ function Copy()
 	LrDialogs.message( "Nothing", "Nothing", "info" )
 
 	Contrast		= LrDevelopController.getValue("Contrast");
+	Temp			= LrDevelopController.getValue("Temperature");
 	Shadows			= LrDevelopController.getValue("Shadows");
 	Whites			= LrDevelopController.getValue("Whites");
 	Blacks			= LrDevelopController.getValue("Blacks");
@@ -127,40 +129,41 @@ end
 function Paste()
 	
 	LrDialogs.message( "Nothing", "Nothing", "info" )
-
-	Contrast		= LrDevelopController.setValue("Contrast",Contrast);
-	Shadows			= LrDevelopController.setValue("Shadows",Shadows);
-	Whites			= LrDevelopController.setValue("Whites",Whites);
-	Blacks			= LrDevelopController.setValue("Blacks",Blacks);
-	Highligths		= LrDevelopController.setValue("Highligths",Highligths);
-	Exposure		= LrDevelopController.setValue("Exposure",Exposure);
-	Clarity			= LrDevelopController.setValue("Clarity",Clarity);
-	Vibrance		= LrDevelopController.setValue("Vibrance",Vibrance);
-	Saturation		= LrDevelopController.setValue("Saturation",Saturation);
-	HueRed			= LrDevelopController.setValue("HueAdjustmentRed",HueRed);
-	SatRed			= LrDevelopController.setValue("SatAdjustmentRed",SatRed);
-	LumRed			= LrDevelopController.setValue("LumAdjustmentRed",LumRed);
-	HueOrange		= LrDevelopController.setValue("HueAdjustmentOrange",HueOrange);
-	SatOrange		= LrDevelopController.setValue("SatAdjustmentOrange",SatOrange);
-	LumOrange		= LrDevelopController.setValue("LumAdjustmentOrange",LumOrange);
-	HueYellow		= LrDevelopController.setValue("HueAdjustmentYellow",HueYellow);
-	SatYellow		= LrDevelopController.setValue("SatAdjustmentYellow",SatYellow);
-	LumYellow		= LrDevelopController.setValue("LumAdjustmentYellow",LumYellow);
-	HueGreen		= LrDevelopController.setValue("HueAdjustmentGreen",HueGreen);
-	SatGreen		= LrDevelopController.setValue("SatAdjustmentGreen",SatGreen);
-	LumGreen		= LrDevelopController.setValue("LumAdjustmentGreen",LumGreen);
-	HueAqua			= LrDevelopController.setValue("HueAdjustmentAqua",HueAqua);
-	SatAqua			= LrDevelopController.setValue("SatAdjustmentAqua",SatAqua);
-	LumAqua			= LrDevelopController.setValue("LumAdjustmentAqua",LumAqua);
-	HueBlue			= LrDevelopController.setValue("HueAdjustmentBlue",HueBlue);
-	SatBlue			= LrDevelopController.setValue("SatAdjustmentBlue",SatBlue);
-	LumBlue			= LrDevelopController.setValue("LumAdjustmentBlue",LumBlue);
-	HuePurple		= LrDevelopController.setValue("HueAdjustmentPurple",HuePurple);
-	SatPurple		= LrDevelopController.setValue("SatAdjustmentPurple",SatPurple);
-	LumPurple		= LrDevelopController.setValue("LumAdjustmentPurple",LumPurple);
-	HueMagenta		= LrDevelopController.setValue("HueAdjustmentMagenta",HueMagenta);
-	SatMagenta		= LrDevelopController.setValue("SatAdjustmentMagenta",SatMagenta);
-	LumMagenta		= LrDevelopController.setValue("LumAdjustmentMagenta",LumMagenta);
+    
+	LrDevelopController.setValue("Contrast",Contrast);
+	LrDevelopController.setValue("Temperature",Temp);
+	LrDevelopController.setValue("Shadows",Shadows);
+	LrDevelopController.setValue("Whites",Whites);
+	LrDevelopController.setValue("Blacks",Blacks);
+	LrDevelopController.setValue("Highligths",Highligths);
+	LrDevelopController.setValue("Exposure",Exposure);
+	LrDevelopController.setValue("Clarity",Clarity);
+	LrDevelopController.setValue("Vibrance",Vibrance);
+	LrDevelopController.setValue("Saturation",Saturation);
+	LrDevelopController.setValue("HueAdjustmentRed",HueRed);
+	LrDevelopController.setValue("SatAdjustmentRed",SatRed);
+	LrDevelopController.setValue("LumAdjustmentRed",LumRed);
+	LrDevelopController.setValue("HueAdjustmentOrange",HueOrange);
+	LrDevelopController.setValue("SatAdjustmentOrange",SatOrange);
+	LrDevelopController.setValue("LumAdjustmentOrange",LumOrange);
+	LrDevelopController.setValue("HueAdjustmentYellow",HueYellow);
+	LrDevelopController.setValue("SatAdjustmentYellow",SatYellow);
+	LrDevelopController.setValue("LumAdjustmentYellow",LumYellow);
+	LrDevelopController.setValue("HueAdjustmentGreen",HueGreen);
+	LrDevelopController.setValue("SatAdjustmentGreen",SatGreen);
+	LrDevelopController.setValue("LumAdjustmentGreen",LumGreen);
+	LrDevelopController.setValue("HueAdjustmentAqua",HueAqua);
+	LrDevelopController.setValue("SatAdjustmentAqua",SatAqua);
+	LrDevelopController.setValue("LumAdjustmentAqua",LumAqua);
+	LrDevelopController.setValue("HueAdjustmentBlue",HueBlue);
+	LrDevelopController.setValue("SatAdjustmentBlue",SatBlue);
+	LrDevelopController.setValue("LumAdjustmentBlue",LumBlue);
+	LrDevelopController.setValue("HueAdjustmentPurple",HuePurple);
+	LrDevelopController.setValue("SatAdjustmentPurple",SatPurple);
+	LrDevelopController.setValue("LumAdjustmentPurple",LumPurple);
+	LrDevelopController.setValue("HueAdjustmentMagenta",HueMagenta);
+	LrDevelopController.setValue("SatAdjustmentMagenta",SatMagenta);
+	LrDevelopController.setValue("LumAdjustmentMagenta",LumMagenta);
 	
 end
 	
@@ -249,7 +252,8 @@ function ExecuteFunction()
 	local valueDevelopt
 	
     -- Fakultaet(message)
-	if     BefehlString == "Contrast+" 			then ChangeAdjustPanel("Contrast","positiv")                            
+	if     BefehlString == "Contrast+" 			then ChangeAdjustPanel("Contrast","positiv")
+	elseif BefehlString == "Temp+" 				then ChangeAdjustPanel("Temperature","positiv")	                            
 	elseif BefehlString == "Shadows+" 			then ChangeAdjustPanel("Shadows","positiv")        
 	elseif BefehlString == "Whites+" 			then ChangeAdjustPanel("Whites","positiv")        
 	elseif BefehlString == "Blacks+" 			then ChangeAdjustPanel("Blacks","positiv")        
@@ -283,7 +287,8 @@ function ExecuteFunction()
 	elseif BefehlString == "SatMagenta+" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","positiv")
 	elseif BefehlString == "LumMagenta+" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","positiv")
 	
-	elseif BefehlString == "Contrast-" 			then ChangeAdjustPanel("Contrast","negativ")        
+	elseif BefehlString == "Contrast-" 			then ChangeAdjustPanel("Contrast","negativ")
+	elseif BefehlString == "Temp-" 				then ChangeAdjustPanel("Temperature","negativ")	        
 	elseif BefehlString == "Shadows-" 			then ChangeAdjustPanel("Shadows","negativ")        
 	elseif BefehlString == "Blacks-" 			then ChangeAdjustPanel("Blacks","negativ")        
 	elseif BefehlString == "Whites-" 			then ChangeAdjustPanel("Whites","negativ")        
@@ -317,7 +322,8 @@ function ExecuteFunction()
 	elseif BefehlString == "SatMagenta-" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","negativ")
 	elseif BefehlString == "LumMagenta-" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","negativ")
 	
-	elseif BefehlString == "Contrast0" 			then ChangeAdjustPanel("Contrast","zero")        
+	elseif BefehlString == "Contrast0" 			then ChangeAdjustPanel("Contrast","zero")
+	elseif BefehlString == "Temp0" 				then ChangeAdjustPanel("Temperature","zero")
 	elseif BefehlString == "Shadows0" 			then ChangeAdjustPanel("Shadows","zero")        
 	elseif BefehlString == "Blacks0" 			then ChangeAdjustPanel("Blacks","zero")        
 	elseif BefehlString == "Whites0" 			then ChangeAdjustPanel("Whites","zero")        
@@ -351,9 +357,9 @@ function ExecuteFunction()
 	elseif BefehlString == "SatMagenta0" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","zero")
 	elseif BefehlString == "LumMagenta0" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","zero")  
 
-	elseif BefehlString == "Hue" 		then ChangeLum()  
+	elseif BefehlString == "Hue" 		then ChangeHue()  
 	elseif BefehlString == "Sat" 		then ChangeSat()  
-	elseif BefehlString == "Lum" 		then ChangeLum()	
+	elseif BefehlString == "Lum" 		then ChangeLum()
 
 	elseif BefehlString == "Rate0" 		then LrSelection.setRating(0)  
 	elseif BefehlString == "Rate1" 		then LrSelection.setRating(1)  
@@ -370,6 +376,8 @@ function ExecuteFunction()
 	elseif BefehlString == "Up"			then LrSelection.selectFirstPhoto()
 	elseif BefehlString == "Down"		then LrSelection.selectLastPhoto()
 
+	elseif BefehlString == "Copy" 		then Copy()
+	elseif BefehlString == "Paste" 		then Paste()
 	elseif BefehlString == "Pick"		then LrSelection.nextPhoto()
 	elseif BefehlString == "Zoom"		then LrApplicationView.toggleZoom()
 	elseif BefehlString == "Full"		then switchToFullscreen()
@@ -378,8 +386,6 @@ function ExecuteFunction()
 		
 	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
 	end
-
-	
 
 	----LrDialogs.showBezel( WertChar, 2 )
 
@@ -481,7 +487,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:45", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:49", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
