@@ -8,6 +8,7 @@ local LrSelection = import 'LrSelection'
 local LrUndo = import 'LrUndo'
 
 
+
 ----------------- Global Variabel  ----------------
 WertString    	= "NIL"
 BefehlString  	= "NIL"
@@ -48,6 +49,23 @@ HueMagenta		= 0
 SatMagenta		= 0
 LumMagenta		= 0
 ----------------- Global Variabel  ----------------
+
+--------------- BlackWhite Function ---------------
+
+local isGrayscale = false
+
+isGrayscale = LrDevelopController.getValue("ConvertToGrayscale")
+
+if isGrayscale == false then LrDevelopController.setValue("ConvertToGrayscale",true)	
+else LrDevelopController.setValue("ConvertToGrayscale",false)
+
+
+--------------- BlackWhite Function ---------------
+--------------- StartDriver Function --------------
+
+--
+
+--------------- StartDriver Function --------------
 ---------------- ChangeLum Function ---------------
 
 function ChangeLum()
@@ -376,6 +394,7 @@ function ExecuteFunction()
 	elseif BefehlString == "Up"			then LrSelection.selectFirstPhoto()
 	elseif BefehlString == "Down"		then LrSelection.selectLastPhoto()
 
+	elseif BefehlString == "BW" 		then 
 	elseif BefehlString == "Copy" 		then Copy()
 	elseif BefehlString == "Paste" 		then Paste()
 	elseif BefehlString == "Pick"		then Pick()
