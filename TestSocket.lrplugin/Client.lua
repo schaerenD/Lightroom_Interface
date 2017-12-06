@@ -68,7 +68,7 @@ end
 --------------- BlackWhite Function ---------------
 --------------- StartDriver Function --------------
 
---
+
 
 --------------- StartDriver Function --------------
 ---------------- ChangeLum Function ---------------
@@ -515,7 +515,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:58", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:59", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
