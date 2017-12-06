@@ -51,13 +51,18 @@ LumMagenta		= 0
 ----------------- Global Variabel  ----------------
 
 --------------- BlackWhite Function ---------------
+function BlackWhite()
 
-local isGrayscale = false
 
-isGrayscale = LrDevelopController.getValue("ConvertToGrayscale")
+	local isGrayscale = false
 
-if isGrayscale == false then LrDevelopController.setValue("ConvertToGrayscale",true)	
-else LrDevelopController.setValue("ConvertToGrayscale",false)
+	isGrayscale = LrDevelopController.getValue("ConvertToGrayscale")
+
+	if isGrayscale == false then LrDevelopController.setValue("ConvertToGrayscale",true)	
+	else LrDevelopController.setValue("ConvertToGrayscale",false)
+	end
+
+end
 
 
 --------------- BlackWhite Function ---------------
@@ -304,6 +309,7 @@ function ExecuteFunction()
 	elseif BefehlString == "HueMagenta+" 		then ChangeAdjustPanel("HueAdjustmentMagenta","positiv")
 	elseif BefehlString == "SatMagenta+" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","positiv")
 	elseif BefehlString == "LumMagenta+" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","positiv")
+	elseif BefehlString == "Crop+" 				then ChangeAdjustPanel("straightenAngle","positiv")
 	
 	elseif BefehlString == "Contrast-" 			then ChangeAdjustPanel("Contrast","negativ")
 	elseif BefehlString == "Temp-" 				then ChangeAdjustPanel("Temperature","negativ")	        
@@ -339,6 +345,7 @@ function ExecuteFunction()
 	elseif BefehlString == "HueMagenta-" 		then ChangeAdjustPanel("HueAdjustmentMagenta","negativ")
 	elseif BefehlString == "SatMagenta-" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","negativ")
 	elseif BefehlString == "LumMagenta-" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","negativ")
+	elseif BefehlString == "Crop-" 				then ChangeAdjustPanel("straightenAngle","negativ")
 	
 	elseif BefehlString == "Contrast0" 			then ChangeAdjustPanel("Contrast","zero")
 	elseif BefehlString == "Temp0" 				then ChangeAdjustPanel("Temperature","zero")
@@ -374,6 +381,7 @@ function ExecuteFunction()
 	elseif BefehlString == "HueMagenta0" 		then ChangeAdjustPanel("HueAdjustmentMagenta","zero")
 	elseif BefehlString == "SatMagenta0" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","zero")
 	elseif BefehlString == "LumMagenta0" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","zero")  
+	elseif BefehlString == "Crop0" 				then LrDevelopController.resetCrop()
 
 	elseif BefehlString == "Hue" 		then ChangeHue()  
 	elseif BefehlString == "Sat" 		then ChangeSat()  
@@ -394,13 +402,14 @@ function ExecuteFunction()
 	elseif BefehlString == "Up"			then LrSelection.selectFirstPhoto()
 	elseif BefehlString == "Down"		then LrSelection.selectLastPhoto()
 
-	elseif BefehlString == "BW" 		then 
+	elseif BefehlString == "BW" 		then BlackWhite()
 	elseif BefehlString == "Copy" 		then Copy()
 	elseif BefehlString == "Paste" 		then Paste()
 	elseif BefehlString == "Pick"		then Pick()
 	elseif BefehlString == "Zoom"		then LrApplicationView.toggleZoom()
 	elseif BefehlString == "Full"		then switchToFullscreen()
 	elseif BefehlString == "Bevor"		then LrApplicationView.showView("develop_before")
+	elseif BefehlString == "Grid" 		then LrApplicationView.switchToModule('library')
 	elseif BefehlString == "Devel"		then LrApplicationView.switchToModule('develop')
 		
 	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
@@ -506,7 +515,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:56", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:58", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
