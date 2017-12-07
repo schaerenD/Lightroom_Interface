@@ -49,7 +49,46 @@ HueMagenta		= 0
 SatMagenta		= 0
 LumMagenta		= 0
 Vignet 			= 0
+
+KillAllTask = false
 ----------------- Global Variabel  ----------------
+---------------- StartAsync Function --------------
+function StartAsync()
+	
+	KillAllTask = false
+	LrTasks.startAsyncTask(AsyncTest,"OmiTask")
+	
+end
+	
+---------------- StartAsync Function --------------
+---------------- EndAsync Function --------------
+function EndAsync()
+	
+	KillAllTask = true
+	
+end
+	
+---------------- EndAsync Function --------------
+
+---------------- AsyncTest Function ---------------
+function AsyncTest(context)
+	
+	local running = true
+	LrDialogs.message( "Async", "Task gestartet", "info" )
+	while running do
+		--sender:send( "reconnect in 10s\n" ) --immer MIT \n ---!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		LrDialogs.showBezel( "I läbe no", 3 )
+		if KillAllTask == true then running = false
+		else running = true
+		end
+		LrTasks.sleep(5) -- seconds
+		--sender:reconnect()
+	end	
+	LrTasks.sleep(5)
+	LrDialogs.showBezel( "I bi tot", 3 )
+end
+	
+---------------- AsyncTest Function ---------------
 
 --------------- BlackWhite Function ---------------
 function BlackWhite()
@@ -422,7 +461,8 @@ function ExecuteFunction()
 	elseif BefehlString == "Grid" 		then LrApplicationView.switchToModule('library')
 	elseif BefehlString == "Devel"		then LrApplicationView.switchToModule('develop')
 
-	elseif BefehlString == "Verb"		then LrDevelopController.setValue("PostCropVignetteAmount",54); 
+	elseif BefehlString == "Verb"		then StartAsync();
+	elseif BefehlString == "Kill"		then EndAsync();	 
 		
 	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
 	end
@@ -527,7 +567,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:75", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:94", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
@@ -574,7 +614,46 @@ LrTasks.startAsyncTask(
 end 
 )
 
-
+--LrTasks.startAsyncTask(
+	--function() LrFunctionContext.callWithContext( 'socket_remote', 
+		--function( context )
+		
+			--local running = true
+			-- local sender = LrSocket.bind
+			-- {
+			-- 	 functionContext = context,
+			-- 	 port = 4243, -- (let the OS assign the port)
+			-- 	 plugin = _PLUGIN,
+			-- 	 mode = "send",
+			-- 	 onConnecting = function( socket, port )
+			-- 		-- TODO
+			-- 	 end,
+			-- 	 onConnected = function( socket, port )
+			-- 		LrDialogs.message( "Conncectd!", "", "info" )
+			-- 	 end,
+			-- 	 onMessage = function( socket, message )
+			-- 		 LrDialogs.message( "Message!" .. message, "", "info" )
+			-- 		-- nothing, we don't expect to get any messages back from a send port
+			-- 	 end,
+			-- 	 onClosed = function( socket )
+			-- 		--LrDialogs.message( "Disconnect!", "", "info" )
+			-- 		running = false
+			-- 	 end,
+			-- 	 onError = function( socket, err )
+			-- 		LrDialogs.message( "Error: " .. err, "", "info" )
+			-- 		if err == "timeout" then
+			-- 			socket:reconnect()
+			-- 		end
+			-- 	 end,
+			-- }
+			-- sender:close()
+			--while running do
+				--sender:send( "reconnect in 10s\n" ) --immer MIT \n ---!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				--LrTasks.sleep(10) -- seconds
+				--sender:reconnect()
+			--end	
+    --end )
+ --end
 
 
 
