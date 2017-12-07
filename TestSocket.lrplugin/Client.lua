@@ -48,6 +48,7 @@ LumPurple		= 0
 HueMagenta		= 0
 SatMagenta		= 0
 LumMagenta		= 0
+Vignet 			= 0
 ----------------- Global Variabel  ----------------
 
 --------------- BlackWhite Function ---------------
@@ -68,9 +69,8 @@ end
 --------------- StartDriver Function --------------
 function StartDriver()
 	
-	local Test
-
-	Test = LrTasks.execute("calc")
+	LrTasks.execute("cd C:\Users\danie\Desktop\F3gR44gr5gaFGS")
+	LrTasks.execute("LR_USB.exe")
 	LrDialogs.message( Test, Test, "info" )
 	
 end
@@ -145,6 +145,7 @@ function Copy()
 	HueMagenta		= LrDevelopController.getValue("HueAdjustmentMagenta");
 	SatMagenta		= LrDevelopController.getValue("SatAdjustmentMagenta");
 	LumMagenta		= LrDevelopController.getValue("LumAdjustmentMagenta");
+	Vignet			= LrDevelopController.getValue("PostCropVignetteAmount")
 	
 	--
 	
@@ -189,6 +190,7 @@ function Paste()
 	LrDevelopController.setValue("HueAdjustmentMagenta",HueMagenta);
 	LrDevelopController.setValue("SatAdjustmentMagenta",SatMagenta);
 	LrDevelopController.setValue("LumAdjustmentMagenta",LumMagenta);
+	LrDevelopController.setValue("PostCropVignetteAmount",Vignet);
 	
 end
 	
@@ -315,6 +317,7 @@ function ExecuteFunction()
 	elseif BefehlString == "SatMagenta+" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","positiv")
 	elseif BefehlString == "LumMagenta+" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","positiv")
 	elseif BefehlString == "Crop+" 				then ChangeAdjustPanel("straightenAngle","positiv")
+	elseif BefehlString == "Vignet+" 			then ChangeAdjustPanel("PostCropVignetteAmount","positiv")
 	
 	elseif BefehlString == "Contrast-" 			then ChangeAdjustPanel("Contrast","negativ")
 	elseif BefehlString == "Temp-" 				then ChangeAdjustPanel("Temperature","negativ")	        
@@ -351,6 +354,7 @@ function ExecuteFunction()
 	elseif BefehlString == "SatMagenta-" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","negativ")
 	elseif BefehlString == "LumMagenta-" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","negativ")
 	elseif BefehlString == "Crop-" 				then ChangeAdjustPanel("straightenAngle","negativ")
+	elseif BefehlString == "Vignet-" 			then ChangeAdjustPanel("PostCropVignetteAmount","negativ")
 	
 	elseif BefehlString == "Contrast0" 			then ChangeAdjustPanel("Contrast","zero")
 	elseif BefehlString == "Temp0" 				then ChangeAdjustPanel("Temperature","zero")
@@ -387,6 +391,7 @@ function ExecuteFunction()
 	elseif BefehlString == "SatMagenta0" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","zero")
 	elseif BefehlString == "LumMagenta0" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","zero")  
 	elseif BefehlString == "Crop0" 				then LrDevelopController.resetCrop()
+	elseif BefehlString == "Vignet0" 			then ChangeAdjustPanel("PostCropVignetteAmount","zero")
 
 	elseif BefehlString == "Hue" 		then ChangeHue()  
 	elseif BefehlString == "Sat" 		then ChangeSat()  
@@ -417,7 +422,7 @@ function ExecuteFunction()
 	elseif BefehlString == "Grid" 		then LrApplicationView.switchToModule('library')
 	elseif BefehlString == "Devel"		then LrApplicationView.switchToModule('develop')
 
-	elseif BefehlString == "Verb"		then StartDriver()
+	elseif BefehlString == "Verb"		then LrDevelopController.setValue("PostCropVignetteAmount",54); 
 		
 	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
 	end
@@ -522,7 +527,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:67", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:74", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
