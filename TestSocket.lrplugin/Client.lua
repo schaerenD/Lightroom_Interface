@@ -567,7 +567,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:94", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:95", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
