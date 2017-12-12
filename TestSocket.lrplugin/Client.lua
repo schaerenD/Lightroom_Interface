@@ -54,9 +54,13 @@ KillAllTask = false
 ----------------- Global Variabel  ----------------
 ---------------- StartAsync Function --------------
 function StartAsync()
-	
+
+	local  ReturnReferenz
+
 	KillAllTask = false
+	--LrTasks.startAsyncTask(function() LrFunctionContext.callWithContext( 'socket_send', AsyncTest(context))
 	LrTasks.startAsyncTask(AsyncTest,"OmiTask")
+	----LrDialogs.message( "Async", ReturnValue, "info" )
 	
 end
 	
@@ -69,23 +73,60 @@ function EndAsync()
 end
 	
 ---------------- EndAsync Function --------------
+---------------- Socket Function ----------------
 
+---------------- Socket Function ----------------
 ---------------- AsyncTest Function ---------------
 function AsyncTest(context)
-	
+
 	local running = true
 	LrDialogs.message( "Async", "Task gestartet", "info" )
-	while running do
-		--sender:send( "reconnect in 10s\n" ) --immer MIT \n ---!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		LrDialogs.showBezel( "I läbe no", 3 )
-		if KillAllTask == true then running = false
-		else running = true
-		end
-		LrTasks.sleep(5) -- seconds
-		--sender:reconnect()
-	end	
-	LrTasks.sleep(5)
-	LrDialogs.showBezel( "I bi tot", 3 )
+	--local sender = LrSocket.bind
+	--LrTasks.startAsyncTask( function()
+		-- LrFunctionContext.callWithContext( 'socket_send', AsyncTest( context ))
+		--  --local running = true
+		--  local sender = LrSocket.bind {
+		--   functionContext = "socket_send",
+		--   plugin = "MIDI2LR",
+		--   port = 10078, -- (let the OS assign the port)
+		--   mode = "send",
+		--   onConnecting = function( socket, port )
+		--    -- TODO
+		--   end,
+		--   onConnected = function( socket, port )
+		--    -- TODO
+		--   end,
+		--   onMessage = function( socket, message )
+		--    -- nothing, we don't expect to get any messages back from a send port
+		--   end,
+		--   onClosed = function( socket )
+		--    running = false
+		--   end,
+		--   onError = function( socket, err )
+		--    if err == "timeout" then
+		-- 	socket:reconnect()
+		--    end
+		--   end,
+		--  }
+		--  sender:send( "Hello world" )
+		--  while running do
+		--   LrTasks.sleep( 1/2 ) -- seconds
+		--  end
+		--  sender:close()
+		--end )
+	 --end )
+	-- while running do
+	-- 	--sender:send( "reconnect in 10s\n" ) --immer MIT \n ---!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	-- 	LrDialogs.showBezel( "I läbe no", 3 )
+	-- 	if KillAllTask == true then running = false
+	-- 	else running = true
+	-- 	end
+	-- 	LrTasks.sleep(5) -- seconds
+	-- 	--sender:reconnect()
+	-- end	
+	-- sender:close()
+	-- LrTasks.sleep(5)
+	-- LrDialogs.showBezel( "I bi tot", 3 )
 end
 	
 ---------------- AsyncTest Function ---------------
@@ -97,7 +138,7 @@ function BlackWhite()
 	local isGrayscale = false
 
 	isGrayscale = LrDevelopController.getValue("ConvertToGrayscale")
-
+	LrApplicationView.switchToModule('develop')		-- Change Module
 	if isGrayscale == false then LrDevelopController.setValue("ConvertToGrayscale",true)	
 	else LrDevelopController.setValue("ConvertToGrayscale",false)
 	end
@@ -553,7 +594,7 @@ LrTasks.startAsyncTask(
 		
 		local running = true
 		
-			local receiver = LrSocket.bind 
+			local remote = LrSocket.bind 
 			{
 				functionContext = context,
 				port = 4242,
@@ -567,7 +608,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:95", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:112", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
