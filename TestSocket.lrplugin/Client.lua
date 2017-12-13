@@ -6,13 +6,15 @@ local LrDevelopController = import 'LrDevelopController'
 local LrApplicationView   = import 'LrApplicationView'
 local LrSelection = import 'LrSelection'
 local LrUndo = import 'LrUndo'
-
+-- 
 
 
 ----------------- Global Variabel  ----------------
 WertString    	= "NIL"
 BefehlString  	= "NIL"
 WertChar 		= 0 
+
+LastView		="loupe"
 
 Contrast		= 0
 Temp			= 0
@@ -156,6 +158,54 @@ function StartDriver()
 end
 
 --------------- StartDriver Function --------------
+--------------- BevorAfter Function ---------------
+
+function BevorAfter()
+	
+	LrApplicationView.showView("loupe")
+	if 		LastView == "develop_before" then LastView = "develop_before"
+	elseif 	LastView == "develop_before_after_horiz" then LastView = "develop_before_after_horiz"
+	elseif 	LastView == "develop_before_after_vert" then LastView = "develop_before_after_vert"
+	elseif 	LastView == "grid" then LastView = "grid";
+	elseif 	LastView == "compare" then LastView = "compare";
+	elseif 	LastView == "survey" then LastView = "survey";
+	else
+	end
+	
+
+
+end
+		
+	
+--------------- BevorAfter Function --------------
+------------------- Up Function ------------------
+
+function Up()
+	
+	local CurrentModule = ""
+	CurrentModule = LrApplicationView.getCurrentModuleName()
+	if CurrentModule == "library" then LrSelection.selectFirstPhoto()	
+	else LrApplicationView.zoomInSome()
+	end
+
+end
+		
+	
+------------------- Up Function ------------------
+------------------ Down Function -----------------
+
+function Down()
+	
+	local CurrentModule = ""
+	CurrentModule = LrApplicationView.getCurrentModuleName()
+	if CurrentModule == "library" then LrSelection.selectLastPhoto()	
+	else LrApplicationView.zoomOutSome()
+	end
+
+end
+		
+	
+------------------ Down Function -----------------
 ---------------- ChangeLum Function ---------------
 
 function ChangeLum()
@@ -489,8 +539,8 @@ function ExecuteFunction()
 		
 	elseif BefehlString == "Right"		then LrSelection.nextPhoto()
 	elseif BefehlString == "Left"		then LrSelection.previousPhoto()
-	elseif BefehlString == "Up"			then LrSelection.selectFirstPhoto()
-	elseif BefehlString == "Down"		then LrSelection.selectLastPhoto()
+	elseif BefehlString == "Up"			then Up()
+	elseif BefehlString == "Down"		then Down()
 
 	elseif BefehlString == "BW" 		then BlackWhite()
 	elseif BefehlString == "Copy" 		then Copy()
@@ -498,7 +548,7 @@ function ExecuteFunction()
 	elseif BefehlString == "Pick"		then Pick()
 	elseif BefehlString == "Zoom"		then LrApplicationView.toggleZoom()
 	elseif BefehlString == "Full"		then switchToFullscreen()
-	elseif BefehlString == "Bevor"		then LrApplicationView.showView("develop_before")
+	elseif BefehlString == "Bevor"		then BevorAfter()
 	elseif BefehlString == "Grid" 		then LrApplicationView.switchToModule('library')
 	elseif BefehlString == "Devel"		then LrApplicationView.switchToModule('develop')
 
@@ -608,7 +658,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:112", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:120	", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
