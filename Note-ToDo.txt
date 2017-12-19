@@ -1,4 +1,0 @@
-To-Do:
--> Anpassungen Copy/Paste
--> TCP Socket (Senden) [Optional]
--> Grayscale Problem loesen
