@@ -558,6 +558,9 @@ function ExecuteFunction()
 	elseif BefehlString == "Bevor"		then LrApplicationView.showView("develop_before")
 =======
 	elseif BefehlString == "Bevor"		then BevorAfter()
+<<<<<<< HEAD
+>>>>>>> parent of d70c5de... Funktionsfähig
+=======
 >>>>>>> parent of d70c5de... Funktionsfähig
 	elseif BefehlString == "Grid" 		then LrApplicationView.switchToModule('library')
 	elseif BefehlString == "Devel"		then LrApplicationView.switchToModule('develop')
@@ -669,7 +672,11 @@ LrTasks.startAsyncTask(
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
 <<<<<<< HEAD
+<<<<<<< HEAD
 					LrDialogs.message( "Connection established Vers.:112", "4242", "info" )
+=======
+					LrDialogs.message( "Connection established Vers.:120	", "4242", "info" )
+>>>>>>> parent of d70c5de... Funktionsfähig
 =======
 					LrDialogs.message( "Connection established Vers.:120	", "4242", "info" )
 >>>>>>> parent of d70c5de... Funktionsfähig
