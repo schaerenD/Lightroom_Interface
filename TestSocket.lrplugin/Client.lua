@@ -559,6 +559,9 @@ function ExecuteFunction()
 =======
 	elseif BefehlString == "Bevor"		then BevorAfter()
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of d70c5de... Funktionsfähig
+=======
 >>>>>>> parent of d70c5de... Funktionsfähig
 =======
 >>>>>>> parent of d70c5de... Funktionsfähig
@@ -673,7 +676,11 @@ LrTasks.startAsyncTask(
 				onConnected = function( socket, port ) 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 					LrDialogs.message( "Connection established Vers.:112", "4242", "info" )
+=======
+					LrDialogs.message( "Connection established Vers.:120	", "4242", "info" )
+>>>>>>> parent of d70c5de... Funktionsfähig
 =======
 					LrDialogs.message( "Connection established Vers.:120	", "4242", "info" )
 >>>>>>> parent of d70c5de... Funktionsfähig
