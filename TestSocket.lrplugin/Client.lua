@@ -14,6 +14,11 @@ WertString    	= "NIL"
 BefehlString  	= "NIL"
 WertChar 		= 0 
 
+<<<<<<< HEAD
+=======
+LastView		="loupe"
+
+>>>>>>> parent of d70c5de... Funktionsfähig
 Contrast		= 0
 Temp			= 0
 Shadows			= 0
@@ -156,6 +161,57 @@ function StartDriver()
 end
 
 --------------- StartDriver Function --------------
+<<<<<<< HEAD
+=======
+--------------- BevorAfter Function ---------------
+
+function BevorAfter()
+	
+	LrApplicationView.showView("loupe")
+	if 		LastView == "develop_before" then LastView = "develop_before"
+	elseif 	LastView == "develop_before_after_horiz" then LastView = "develop_before_after_horiz"
+	elseif 	LastView == "develop_before_after_vert" then LastView = "develop_before_after_vert"
+	elseif 	LastView == "grid" then LastView = "grid";
+	elseif 	LastView == "compare" then LastView = "compare";
+	elseif 	LastView == "survey" then LastView = "survey";
+	else
+	end
+	
+
+
+end
+		
+	
+--------------- BevorAfter Function --------------
+------------------- Up Function ------------------
+
+function Up()
+	
+	local CurrentModule = ""
+	CurrentModule = LrApplicationView.getCurrentModuleName()
+	if CurrentModule == "library" then LrSelection.selectFirstPhoto()	
+	else LrApplicationView.zoomInSome()
+	end
+
+end
+		
+	
+------------------- Up Function ------------------
+------------------ Down Function -----------------
+
+function Down()
+	
+	local CurrentModule = ""
+	CurrentModule = LrApplicationView.getCurrentModuleName()
+	if CurrentModule == "library" then LrSelection.selectLastPhoto()	
+	else LrApplicationView.zoomOutSome()
+	end
+
+end
+		
+	
+------------------ Down Function -----------------
+>>>>>>> parent of d70c5de... Funktionsfähig
 ---------------- ChangeLum Function ---------------
 
 function ChangeLum()
@@ -498,7 +554,11 @@ function ExecuteFunction()
 	elseif BefehlString == "Pick"		then Pick()
 	elseif BefehlString == "Zoom"		then LrApplicationView.toggleZoom()
 	elseif BefehlString == "Full"		then switchToFullscreen()
+<<<<<<< HEAD
 	elseif BefehlString == "Bevor"		then LrApplicationView.showView("develop_before")
+=======
+	elseif BefehlString == "Bevor"		then BevorAfter()
+>>>>>>> parent of d70c5de... Funktionsfähig
 	elseif BefehlString == "Grid" 		then LrApplicationView.switchToModule('library')
 	elseif BefehlString == "Devel"		then LrApplicationView.switchToModule('develop')
 
@@ -608,7 +668,11 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
+<<<<<<< HEAD
 					LrDialogs.message( "Connection established Vers.:112", "4242", "info" )
+=======
+					LrDialogs.message( "Connection established Vers.:120	", "4242", "info" )
+>>>>>>> parent of d70c5de... Funktionsfähig
 				end,
 				
 				--Funktion OnMessage()
