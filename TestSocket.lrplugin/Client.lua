@@ -382,7 +382,7 @@ function ChangeExposure(Groesse,Richtung)
 	
 	end
 	
-
+--TEST
 -------------- ChangeExposure Function ------------
 
 ----------- ChangeAdjustPanel Function  -----------
