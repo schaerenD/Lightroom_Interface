@@ -6,8 +6,12 @@ local LrDevelopController = import 'LrDevelopController'
 local LrApplicationView   = import 'LrApplicationView'
 local LrSelection = import 'LrSelection'
 local LrUndo = import 'LrUndo'
--- 
 
+local LrView = import 'LrView'
+
+require "Limits"
+require "CopyPasteVar"
+require "ExecuteFunc"
 
 ----------------- Global Variabel  ----------------
 WertString    	= "NIL"
@@ -17,122 +21,8 @@ WertChar 		= 0
 LastView		= "loupe"
 KillAllTask 	= false
 
-Contrast		= 0
-Temp			= 0
-Shadows			= 0
-Whites			= 0
-Blacks			= 0
-Highligths		= 0
-Exposure		= 0
-Clarity			= 0
-Vibrance		= 0
-Saturation		= 0
-HueRed			= 0
-SatRed			= 0
-LumRed			= 0
-HueOrange		= 0
-SatOrange		= 0
-LumOrange		= 0
-HueYellow		= 0
-SatYellow		= 0
-LumYellow		= 0
-HueGreen		= 0
-SatGreen		= 0
-LumGreen		= 0
-HueAqua			= 0
-SatAqua			= 0
-LumAqua			= 0
-HueBlue			= 0
-SatBlue			= 0
-LumBlue			= 0
-HuePurple		= 0
-SatPurple		= 0
-LumPurple		= 0
-HueMagenta		= 0
-SatMagenta		= 0
-LumMagenta		= 0
-Vignet 			= 0
-
-LimitsLow	= {}
-LimitsLow["Standard"]						= -100
-LimitsLow["Temperatur"]						= 2000
-LimitsLow["Exposure"]						= -500
-LimitsLow["Tint"]							= -150
-LimitsLow["Contrast"]						= -100
-LimitsLow["Shadows"]						= -100
-LimitsLow["Whites"]							= -100
-LimitsLow["Blacks"]							= -100
-LimitsLow["Lowlights"]						= -100
-LimitsLow["Clarity"]						= -100
-LimitsLow["Vibrance"]						= -100
-LimitsLow["Saturation"]						= -100
-LimitsLow["HueAdjustmentRed"]				= -100
-LimitsLow["SaturationAdjustmentRed"]		= -100
-LimitsLow["LuminanceAdjustmentRed"]			= -100
-LimitsLow["HueAdjustmentOrange"]			= -100
-LimitsLow["SaturationAdjustmentOrange"]		= -100
-LimitsLow["LuminanceAdjustmentOrange"]		= -100
-LimitsLow["HueAdjustmentYellow"]			= -100
-LimitsLow["SaturationAdjustmentYellow"]		= -100
-LimitsLow["LuminanceAdjustmentYellow"]		= -100
-LimitsLow["HueAdjustmentGreen"]				= -100
-LimitsLow["SaturationAdjustmentGreen"]		= -100
-LimitsLow["LuminanceAdjustmentGreen"]		= -100
-LimitsLow["HueAdjustmentAqua"]				= -100
-LimitsLow["SaturationAdjustmentAqua"]		= -100
-LimitsLow["LuminanceAdjustmentAqua"]		= -100
-LimitsLow["HueAdjustmentBlue"]				= -100
-LimitsLow["SaturationAdjustmentBlue"]		= -100
-LimitsLow["LuminanceAdjustmentBlue"]		= -100
-LimitsLow["HueAdjustmentPurple"]			= -100
-LimitsLow["SaturationAdjustmentPurple"]		= -100
-LimitsLow["LuminanceAdjustmentPurple"]		= -100
-LimitsLow["HueAdjustmentMagenta"]			= -100
-LimitsLow["SaturationAdjustmentMagenta"]	= -100
-LimitsLow["LuminanceAdjustmentMagenta"]		= -100
-LimitsLow["straightenAngle"]				= -100
-LimitsLow["PostCropVignetteAmount"]			= -100
-
-
-LimitsHigh	= {}
-LimitsHigh["Standard"] 						= 100
-LimitsHigh["Temperatur"]					= 50000
-LimitsHigh["Exposure"]						= 500
-LimitsHigh["Tint"]							= 150
-LimitsHigh["Contrast"]						= 100
-LimitsHigh["Shadows"]						= 100
-LimitsHigh["Whites"]						= 100
-LimitsHigh["Blacks"]						= 100
-LimitsHigh["Highlights"]					= 100
-LimitsHigh["Clarity"]						= 100
-LimitsHigh["Vibrance"]						= 100
-LimitsHigh["Saturation"]					= 100
-LimitsHigh["HueAdjustmentRed"]				= 100
-LimitsHigh["SaturationAdjustmentRed"]		= 100
-LimitsHigh["LuminanceAdjustmentRed"]		= 100
-LimitsHigh["HueAdjustmentOrange"]			= 100
-LimitsHigh["SaturationAdjustmentOrange"]	= 100
-LimitsHigh["LuminanceAdjustmentOrange"]		= 100
-LimitsHigh["HueAdjustmentYellow"]			= 100
-LimitsHigh["SaturationAdjustmentYellow"]	= 100
-LimitsHigh["LuminanceAdjustmentYellow"]		= 100
-LimitsHigh["HueAdjustmentGreen"]			= 100
-LimitsHigh["SaturationAdjustmentGreen"]		= 100
-LimitsHigh["LuminanceAdjustmentGreen"]		= 100
-LimitsHigh["HueAdjustmentAqua"]				= 100
-LimitsHigh["SaturationAdjustmentAqua"]		= 100
-LimitsHigh["LuminanceAdjustmentAqua"]		= 100
-LimitsHigh["HueAdjustmentBlue"]				= 100
-LimitsHigh["SaturationAdjustmentBlue"]		= 100
-LimitsHigh["LuminanceAdjustmentBlue"]		= 100
-LimitsHigh["HueAdjustmentPurple"]			= 100
-LimitsHigh["SaturationAdjustmentPurple"]	= 100
-LimitsHigh["LuminanceAdjustmentPurple"]		= 100
-LimitsHigh["HueAdjustmentMagenta"]			= 100
-LimitsHigh["SaturationAdjustmentMagenta"]	= 100
-LimitsHigh["LuminanceAdjustmentMagenta"]	= 100
-LimitsHigh["straightenAngle"]				= 100
-LimitsHigh["PostCropVignetteAmount"]		= 100
+--MyLrView		= LrView.osFactory();
+--MyLrView:checkbox("title:Hallo")
 ----------------- Global Variabel  ----------------
 ---------------- StartAsync Function --------------
 function StartAsync()
@@ -156,6 +46,8 @@ end
 	
 ---------------- EndAsync Function --------------
 ---------------- Socket Function ----------------
+
+	-- Ausgestzt. Code befindet sich in Entwiklung.lua
 
 ---------------- Socket Function ----------------
 ---------------- AsyncTest Function ---------------
@@ -214,7 +106,7 @@ end
 ---------------- AsyncTest Function ---------------
 --------------- BlackWhite Function ---------------
 function BlackWhite()
-
+-- Wechselt aktuelles Bild zwischen Graustufen und Farben. 
 
 	local isGrayscale = false
 
@@ -229,9 +121,9 @@ end
 --------------- BlackWhite Function ---------------
 --------------- StartDriver Function --------------
 function StartDriver()
-	-- Startet automatisch den zu diesem Plugin dazugehörigen Treiber LR_Connect.
-	-- !!! Dazu muss der korrekte Pfad angegeben werden !!!
-	-- Funktioniert nicht unter macOS.
+-- Startet automatisch den zu diesem Plugin dazugehörigen Treiber LR_Connect.
+-- !!! Dazu muss der korrekte Pfad angegeben werden !!!
+-- Funktioniert nicht unter macOS.
 	
 	-- Pfad hier angeben
 	LrTasks.execute("cd C:\Users\danie\Desktop\F3gR44gr5gaFGS")
@@ -245,7 +137,7 @@ end
 --------------- BevorAfter Function ---------------
 
 function BevorAfter()
-
+-- Wechselt zwischen verschiedenen Ansichchten.
 	if 		LastView == "loupe" then LastView = "develop_before";
 	elseif 	LastView == "develop_before" then LastView = "develop_before_after_horiz"
 	elseif 	LastView == "develop_before_after_horiz" then LastView = "develop_before_after_vert"
@@ -303,9 +195,49 @@ function Down()
 	end
 
 end
-		
-	
+			
 ------------------ Down Function -----------------
+------------------ Right Function ----------------
+
+function Right()
+-- Es wird das nächste Bild ausgewählt
+
+	LrSelection.nextPhoto()
+
+end
+				
+------------------ Right Function ----------------
+------------------ Left Function -----------------
+
+function Left()
+-- Es wird das vorherige Bild ausgewählt
+	
+	LrSelection.previousPhoto()
+		
+end
+
+------------------ Left Function -----------------
+------------------ Rate Function -----------------
+
+function Rate(Bewertung)
+-- Ändert die Bewertung eines Bildes.
+		
+	LrSelection.setRating(Bewertung)
+	
+end
+
+------------------ Rate Function -----------------
+------------------ Redo Function -----------------
+
+LrUndo.redo()
+function Redo(Richtung)
+-- Bearbeitungsschritt widerherstellen oder wiederholen.
+			
+	LrUndo.redo(Richtung)
+		
+end
+
+------------------ Redo Function -----------------
 ---------------- ChangeLum Function ---------------
 
 function ChangeLum()
@@ -469,6 +401,28 @@ function switchToFullscreen()
 end
 	
 ----------- switchToFullscreen Function -----------
+------------------ Zoom Function ------------------
+
+function Zoom()
+
+	LrApplicationView.toggleZoom()
+
+end
+
+------------------ Zoom Function ------------------
+--------------- ChangeModule Function -------------
+
+function ChangeModule(Module)
+-- Wechselt zu Modus Entwickeln oder Bibliothek
+
+	if Module == "library" then LrApplicationView.switchToModule('library')
+	elseif Module == "develop" then LrApplicationView.switchToModule('develop')
+	else LrDialogs.message( "Modus ungültig", Module, "info" )
+	end
+
+end
+
+--------------- ChangeModule Function -------------
 -------------- ChangeExposure Function ------------ 
 
 function ChangeExposure(Groesse,Richtung)
@@ -506,7 +460,7 @@ end
 ----------- ChangeAdjustPanel Function  -----------
 
 function ChangeAdjustPanel(Groesse,Richtung)
-	-- Ändert eine Grösse am aktullen Bild mit Ausnahme von Exposure
+-- Ändert eine Grösse am aktullen Bild mit Ausnahme von Exposure
 
 	local valueDevelopt = 0
 
@@ -533,163 +487,6 @@ function ChangeAdjustPanel(Groesse,Richtung)
 end
 
 ----------- ChangeAdjustPanel Function  -----------
------------------ Execute Function  ---------------
-
-function ExecuteFunction()
--- Erkennt welcher Befehl bearbeitet werden soll oder gibt ansonsten einen Fehler aus.
-
-	local valueDevelopt
-	
-	if     BefehlString == "Contrast+" 			then ChangeAdjustPanel("Contrast","positiv")
-	elseif BefehlString == "Temp+" 				then ChangeAdjustPanel("Temperature","positiv")	                            
-	elseif BefehlString == "Shadows+" 			then ChangeAdjustPanel("Shadows","positiv")        
-	elseif BefehlString == "Whites+" 			then ChangeAdjustPanel("Whites","positiv")        
-	elseif BefehlString == "Blacks+" 			then ChangeAdjustPanel("Blacks","positiv")        
-	elseif BefehlString == "Highligths+" 		then ChangeAdjustPanel("Highlights","positiv")        
-	elseif BefehlString == "Exposure+" 			then ChangeExposure("Exposure","positiv")        
-	elseif BefehlString == "Clarity+" 			then ChangeAdjustPanel("Clarity","positiv")        
-	elseif BefehlString == "Vibrance+" 			then ChangeAdjustPanel("Vibrance","positiv")        
-	elseif BefehlString == "Saturation+" 		then ChangeAdjustPanel("Saturation","positiv")        			
-	elseif BefehlString == "HueRed+" 			then ChangeAdjustPanel("HueAdjustmentRed","positiv")        
-	elseif BefehlString == "SatRed+" 			then ChangeAdjustPanel("SaturationAdjustmentRed","positiv")        
-	elseif BefehlString == "LumRed+" 			then ChangeAdjustPanel("LuminanceAdjustmentRed","positiv")        
-	elseif BefehlString == "HueOrange+" 		then ChangeAdjustPanel("HueAdjustmentOrange","positiv")        
-	elseif BefehlString == "SatOrange+" 		then ChangeAdjustPanel("SaturationAdjustmentOrange","positiv")        
-	elseif BefehlString == "LumOrange+" 		then ChangeAdjustPanel("LuminanceAdjustmentOrange","positiv")        
-	elseif BefehlString == "HueYellow+" 		then ChangeAdjustPanel("HueAdjustmentYellow","positiv")        
-	elseif BefehlString == "SatYellow+" 		then ChangeAdjustPanel("SaturationAdjustmentYellow","positiv")
-	elseif BefehlString == "LumYellow+" 		then ChangeAdjustPanel("LuminanceAdjustmentYellow","positiv")
-	elseif BefehlString == "HueGreen+" 			then ChangeAdjustPanel("HueAdjustmentGreen","positiv")
-	elseif BefehlString == "SatGreen+" 			then ChangeAdjustPanel("SaturationAdjustmentGreen","positiv")
-	elseif BefehlString == "LumGreen+" 			then ChangeAdjustPanel("LuminanceAdjustmentGreen","positiv")
-	elseif BefehlString == "HueAqua+" 			then ChangeAdjustPanel("HueAdjustmentAqua","positiv")
-	elseif BefehlString == "SatAqua+"			then ChangeAdjustPanel("SaturationAdjustmentAqua","positiv")
-	elseif BefehlString == "LumAqua+" 			then ChangeAdjustPanel("LuminanceAdjustmentAqua","positiv")
-	elseif BefehlString == "HueBlue+" 			then ChangeAdjustPanel("HueAdjustmentBlue","positiv")
-	elseif BefehlString == "SatBlue+"			then ChangeAdjustPanel("SaturationAdjustmentBlue","positiv")
-	elseif BefehlString == "LumBlue+" 			then ChangeAdjustPanel("LuminanceAdjustmentBlue","positiv")
-	elseif BefehlString == "HuePurple+" 		then ChangeAdjustPanel("HueAdjustmentPurple","positiv")
-	elseif BefehlString == "SatPurple+" 		then ChangeAdjustPanel("SaturationAdjustmentPurple","positiv")        
-	elseif BefehlString == "LumPurple+" 		then ChangeAdjustPanel("LuminanceAdjustmentPurple","positiv")
-	elseif BefehlString == "HueMagenta+" 		then ChangeAdjustPanel("HueAdjustmentMagenta","positiv")
-	elseif BefehlString == "SatMagenta+" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","positiv")
-	elseif BefehlString == "LumMagenta+" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","positiv")
-	elseif BefehlString == "Crop+" 				then ChangeAdjustPanel("straightenAngle","positiv")
-	elseif BefehlString == "Vignet+" 			then ChangeAdjustPanel("PostCropVignetteAmount","positiv")
-	
-	elseif BefehlString == "Contrast-" 			then ChangeAdjustPanel("Contrast","negativ")
-	elseif BefehlString == "Temp-" 				then ChangeAdjustPanel("Temperature","negativ")	        
-	elseif BefehlString == "Shadows-" 			then ChangeAdjustPanel("Shadows","negativ")        
-	elseif BefehlString == "Blacks-" 			then ChangeAdjustPanel("Blacks","negativ")        
-	elseif BefehlString == "Whites-" 			then ChangeAdjustPanel("Whites","negativ")        
-	elseif BefehlString == "Highligths-" 		then ChangeAdjustPanel("Highlights","negativ")        
-	elseif BefehlString == "Exposure-" 			then ChangeExposure("Exposure","negativ")        
-	elseif BefehlString == "Clarity-" 			then ChangeAdjustPanel("Clarity","negativ")        
-	elseif BefehlString == "Vibrance-" 			then ChangeAdjustPanel("Vibrance","negativ")        
-	elseif BefehlString == "Saturation-" 		then ChangeAdjustPanel("Saturation","negativ")        
-	elseif BefehlString == "HueRed-" 			then ChangeAdjustPanel("HueAdjustmentRed","negativ")        
-	elseif BefehlString == "SatRed-" 			then ChangeAdjustPanel("SaturationAdjustmentRed","negativ")        
-	elseif BefehlString == "LumRed-" 			then ChangeAdjustPanel("LuminanceAdjustmentRed","negativ")        
-	elseif BefehlString == "HueOrange-" 		then ChangeAdjustPanel("HueAdjustmentOrange","negativ")        
-	elseif BefehlString == "SatOrange-" 		then ChangeAdjustPanel("SaturationAdjustmentOrange","negativ")        
-	elseif BefehlString == "LumOrange-" 		then ChangeAdjustPanel("LuminanceAdjustmentOrange","negativ")        
-	elseif BefehlString == "HueYellow-" 		then ChangeAdjustPanel("HueAdjustmentYellow","negativ")        
-	elseif BefehlString == "SatYellow-" 		then ChangeAdjustPanel("SaturationAdjustmentYellow","negativ")
-	elseif BefehlString == "LumYellow-" 		then ChangeAdjustPanel("LuminanceAdjustmentYellow","negativ")
-	elseif BefehlString == "HueGreen-" 			then ChangeAdjustPanel("HueAdjustmentGreen","negativ")
-	elseif BefehlString == "SatGreen-" 			then ChangeAdjustPanel("SaturationAdjustmentGreen","negativ")
-	elseif BefehlString == "LumGreen-" 			then ChangeAdjustPanel("LuminanceAdjustmentGreen","negativ")
-	elseif BefehlString == "HueAqua-" 			then ChangeAdjustPanel("HueAdjustmentAqua","negativ")
-	elseif BefehlString == "SatAqua-"		 	then ChangeAdjustPanel("SaturationAdjustmentAqua","negativ")
-	elseif BefehlString == "LumAqua-" 			then ChangeAdjustPanel("LuminanceAdjustmentAqua","negativ")
-	elseif BefehlString == "HueBlue-" 			then ChangeAdjustPanel("HueAdjustmentBlue","negativ")
-	elseif BefehlString == "SatBlue-" 			then ChangeAdjustPanel("SaturationAdjustmentBlue","negativ")
-	elseif BefehlString == "LumBlue-" 			then ChangeAdjustPanel("LuminanceAdjustmentBlue","negativ")
-	elseif BefehlString == "HuePurple-"			then ChangeAdjustPanel("HueAdjustmentPurple","negativ")
-	elseif BefehlString == "SatPurple-" 		then ChangeAdjustPanel("SaturationAdjustmentPurple","negativ")        
-	elseif BefehlString == "LumPurple-" 		then ChangeAdjustPanel("LuminanceAdjustmentPurple","negativ")
-	elseif BefehlString == "HueMagenta-" 		then ChangeAdjustPanel("HueAdjustmentMagenta","negativ")
-	elseif BefehlString == "SatMagenta-" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","negativ")
-	elseif BefehlString == "LumMagenta-" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","negativ")
-	elseif BefehlString == "Crop-" 				then ChangeAdjustPanel("straightenAngle","negativ")
-	elseif BefehlString == "Vignet-" 			then ChangeAdjustPanel("PostCropVignetteAmount","negativ")
-	
-	elseif BefehlString == "Contrast0" 			then ChangeAdjustPanel("Contrast","zero")
-	elseif BefehlString == "Temp0" 				then ChangeAdjustPanel("Temperature","zero")
-	elseif BefehlString == "Shadows0" 			then ChangeAdjustPanel("Shadows","zero")        
-	elseif BefehlString == "Blacks0" 			then ChangeAdjustPanel("Blacks","zero")        
-	elseif BefehlString == "Whites0" 			then ChangeAdjustPanel("Whites","zero")        
-	elseif BefehlString == "Highligths0" 		then ChangeAdjustPanel("Highlights","zero")        
-	elseif BefehlString == "Exposure0" 			then ChangeExposure("Exposure","zero")        
-	elseif BefehlString == "Clarity0" 			then ChangeAdjustPanel("Clarity","zero")        
-	elseif BefehlString == "Vibrance0" 			then ChangeAdjustPanel("Vibrance","zero")        
-	elseif BefehlString == "Saturation0" 		then ChangeAdjustPanel("Saturation","zero")        
-	elseif BefehlString == "HueRed0" 			then ChangeAdjustPanel("HueAdjustmentRed","zero")        
-	elseif BefehlString == "SatRed0" 			then ChangeAdjustPanel("SaturationAdjustmentRed","zero")        
-	elseif BefehlString == "LumRed0" 			then ChangeAdjustPanel("LuminanceAdjustmentRed","zero")        
-	elseif BefehlString == "HueOrange0" 		then ChangeAdjustPanel("HueAdjustmentOrange","zero")        
-	elseif BefehlString == "SatOrange0" 		then ChangeAdjustPanel("SaturationAdjustmentOrange","zero")        
-	elseif BefehlString == "LumOrange0" 		then ChangeAdjustPanel("LumOrangeLuminanceAdjustmentOrange","zero")        
-	elseif BefehlString == "HueYellow0" 		then ChangeAdjustPanel("HueAdjustmentYellow","zero")        
-	elseif BefehlString == "SatYellow0" 		then ChangeAdjustPanel("SaturationAdjustmentYellow","zero")
-	elseif BefehlString == "LumYellow0" 		then ChangeAdjustPanel("LuminanceAdjustmentYellow","zero")
-	elseif BefehlString == "HueGreen0" 			then ChangeAdjustPanel("HueAdjustmentGreen","zero")
-	elseif BefehlString == "SatGreen0"			then ChangeAdjustPanel("SaturationAdjustmentGreen","zero")
-	elseif BefehlString == "LumGreen0" 			then ChangeAdjustPanel("LuminanceAdjustmentGreen","zero")
-	elseif BefehlString == "HueAqua0" 			then ChangeAdjustPanel("HueAdjustmentAqua","zero")
-	elseif BefehlString == "SatAqua0" 			then ChangeAdjustPanel("SaturationAdjustmentAqua","zero")
-	elseif BefehlString == "LumAqua0" 			then ChangeAdjustPanel("LuminanceAdjustmentAqua","zero")
-	elseif BefehlString == "HueBlue0"			then ChangeAdjustPanel("HueAdjustmentBlue","zero")
-	elseif BefehlString == "SatBlue0" 			then ChangeAdjustPanel("SaturationAdjustmentBlue","zero")
-	elseif BefehlString == "LumBlue0" 			then ChangeAdjustPanel("LuminanceAdjustmentBlue","zero")
-	elseif BefehlString == "HuePurple0"			then ChangeAdjustPanel("HueAdjustmentPurple","zero")
-	elseif BefehlString == "SatPurple0" 		then ChangeAdjustPanel("SaturationAdjustmentPurple","zero")        
-	elseif BefehlString == "LumPurple0" 		then ChangeAdjustPanel("LuminanceAdjustmentPurple",	"zero")
-	elseif BefehlString == "HueMagenta0" 		then ChangeAdjustPanel("HueAdjustmentMagenta","zero")
-	elseif BefehlString == "SatMagenta0" 		then ChangeAdjustPanel("SaturationAdjustmentMagenta","zero")
-	elseif BefehlString == "LumMagenta0" 		then ChangeAdjustPanel("LuminanceAdjustmentMagenta","zero")  
-	elseif BefehlString == "Crop0" 				then LrDevelopController.resetCrop()
-	elseif BefehlString == "Vignet0" 			then ChangeAdjustPanel("PostCropVignetteAmount","zero")
-
-	elseif BefehlString == "Hue" 		then ChangeHue()  
-	elseif BefehlString == "Sat" 		then ChangeSat()  
-	elseif BefehlString == "Lum" 		then ChangeLum()
-
-	elseif BefehlString == "Rate0" 		then LrSelection.setRating(0)  
-	elseif BefehlString == "Rate1" 		then LrSelection.setRating(1)  
-	elseif BefehlString == "Rate2" 		then LrSelection.setRating(2)  
-	elseif BefehlString == "Rate3" 		then LrSelection.setRating(3) 
-	elseif BefehlString == "Rate4" 		then LrSelection.setRating(4)
-	elseif BefehlString == "Rate5" 		then LrSelection.setRating(5)
-		
-	elseif BefehlString == "Undo" 		then LrUndo.undo()    
-	elseif BefehlString == "Redo" 		then LrUndo.redo()
-		
-	elseif BefehlString == "Right"		then LrSelection.nextPhoto()
-	elseif BefehlString == "Left"		then LrSelection.previousPhoto()
-	elseif BefehlString == "Up"			then Up()
-	elseif BefehlString == "Down"		then Down()
-
-	elseif BefehlString == "BW" 		then BlackWhite()
-	elseif BefehlString == "Copy" 		then Copy()
-	elseif BefehlString == "Paste" 		then Paste()
-	elseif BefehlString == "Pick"		then Pick()
-	elseif BefehlString == "Zoom"		then LrApplicationView.toggleZoom()
-	elseif BefehlString == "Full"		then switchToFullscreen()
-	elseif BefehlString == "Bevor"		then BevorAfter()
-	elseif BefehlString == "BevorReset"	then BevorAfterReset()
-
-	elseif BefehlString == "Grid" 		then LrApplicationView.switchToModule('library')
-	elseif BefehlString == "Devel"		then LrApplicationView.switchToModule('develop')
-
-	elseif BefehlString == "Verb"		then StartAsync();
-	elseif BefehlString == "Kill"		then EndAsync();
-
-	else LrDialogs.message( "Befehl wurde nicht erkannt", TestString, "info" )
-	end
-end
-
------------------ Execute Function  --------------- 
 ----------------- Match Function  -----------------
 
 function MatchString(myString)
@@ -716,7 +513,7 @@ end
 ----------------- Test Function  ------------------
 
 function TestFunction(TestString)
-	-- Only Lonly Testfunktion zum schnellen Testen von Befehlen.
+-- Only Lonly Testfunktion zum schnellen Testen von Befehlen.
 
 	LrDialogs.message( TestString, "Das hat geklappt", "info" )
 
@@ -725,7 +522,7 @@ end
 -------------- ASCIItoChar Function  --------------
 
 function ASCIItoChar(WertASCII)
-	-- Umwandlung eines  Zahlenstring im ASCII-Format in ein Lua Kompatibles Format(z.B. char) 
+-- Umwandlung eines  Zahlenstring im ASCII-Format in ein Lua Kompatibles Format(z.B. char) 
 	
 	local i = 1
 	local q = 1
@@ -786,7 +583,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:141", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:1.0592", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
@@ -794,7 +591,9 @@ LrTasks.startAsyncTask(
 					
 					MatchString(message)
 					ASCIItoChar(WertString)
+					--LrDialogs.message( "Probleme", "123", "info" )
 					ExecuteFunction()
+					--LrDialogs.message( "Befehl ausgefuehrt", "123", "info" )
 				end,
 				
 				--Funktion OnClosed()

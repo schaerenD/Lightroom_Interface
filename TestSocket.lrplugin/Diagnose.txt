@@ -1,17 +1,17 @@
-Plug-in error log for plug-in at: O:\Software\GitHub\02_Lightroom_Interface\Lightroom_Interface\TestSocket.lrplugin
+Plug-in error log for plug-in at: C:\Users\danie\Documents\01_Software\01_GitHub\02_Lightroom_Interface\Lightroom_Interface\TestSocket.lrplugin
 
 **** Error 1
 
-Beim Ausführen eines Skripts des Zusatzmoduls ist ein Fehler aufgetreten.
-Client.lua:254: '}' expected (to close '{' at line 237) near 'onMessage'
+An error occurred while attempting to run one of the plug-in’s scripts.
+?:0: attempt to index a string value
 
 **** Error 2
 
-Beim Starten dieses Zusatzmoduls ist ein Fehler aufgetreten.
-Client.lua:254: '}' expected (to close '{' at line 237) near 'onMessage'
+An error occurred while attempting to start the plugin.
+?:0: attempt to index a string value
 
 **** Error 3
 
-Für dieses Zusatzmodul konnte kein Menübefehl hinzugefügt werden.
-Client.lua:254: '}' expected (to close '{' at line 237) near 'onMessage'
+Could not add a menu item for this plug-in.
+?:0: attempt to index a string value
 
