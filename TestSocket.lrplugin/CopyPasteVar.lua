@@ -2,6 +2,7 @@
 
 Contrast		= 0
 Temp			= 0
+Tint            = 0
 Shadows			= 0
 Whites			= 0
 Blacks			= 0

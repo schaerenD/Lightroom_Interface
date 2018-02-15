@@ -1,17 +1,1 @@
-Plug-in error log for plug-in at: C:\Users\danie\Documents\01_Software\01_GitHub\02_Lightroom_Interface\Lightroom_Interface\TestSocket.lrplugin
-
-**** Error 1
-
-An error occurred while attempting to run one of the plug-in’s scripts.
-?:0: attempt to index a string value
-
-**** Error 2
-
-An error occurred while attempting to start the plugin.
-?:0: attempt to index a string value
-
-**** Error 3
-
-Could not add a menu item for this plug-in.
-?:0: attempt to index a string value
-
+﻿

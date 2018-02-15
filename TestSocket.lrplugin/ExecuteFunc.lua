@@ -6,11 +6,12 @@ function ExecuteFunction()
 	local valueDevelopt
 	
 	if     BefehlString == "Contrast+" 			then ChangeAdjustPanel("Contrast","positiv")
-	elseif BefehlString == "Temp+" 				then ChangeAdjustPanel("Temperature","positiv")	                            
+    elseif BefehlString == "Temp+" 				then ChangeAdjustPanel("Temperature","positiv")
+    elseif BefehlString == "Tint+" 				then ChangeAdjustPanel("Tint","positiv")	                            
 	elseif BefehlString == "Shadows+" 			then ChangeAdjustPanel("Shadows","positiv")        
 	elseif BefehlString == "Whites+" 			then ChangeAdjustPanel("Whites","positiv")        
 	elseif BefehlString == "Blacks+" 			then ChangeAdjustPanel("Blacks","positiv")        
-	elseif BefehlString == "Highligths+" 		then ChangeAdjustPanel("Highlights","positiv")        
+	elseif BefehlString == "Highlights+" 		then ChangeAdjustPanel("Highlights","positiv")        
 	elseif BefehlString == "Exposure+" 			then ChangeExposure("Exposure","positiv")        
 	elseif BefehlString == "Clarity+" 			then ChangeAdjustPanel("Clarity","positiv")        
 	elseif BefehlString == "Vibrance+" 			then ChangeAdjustPanel("Vibrance","positiv")        
@@ -43,7 +44,8 @@ function ExecuteFunction()
 	elseif BefehlString == "Vignet+" 			then ChangeAdjustPanel("PostCropVignetteAmount","positiv")
 	
 	elseif BefehlString == "Contrast-" 			then ChangeAdjustPanel("Contrast","negativ")
-	elseif BefehlString == "Temp-" 				then ChangeAdjustPanel("Temperature","negativ")	        
+    elseif BefehlString == "Temp-" 				then ChangeAdjustPanel("Temperature","negativ")
+    elseif BefehlString == "Tint-" 				then ChangeAdjustPanel("Tint","negativ")	        
 	elseif BefehlString == "Shadows-" 			then ChangeAdjustPanel("Shadows","negativ")        
 	elseif BefehlString == "Blacks-" 			then ChangeAdjustPanel("Blacks","negativ")        
 	elseif BefehlString == "Whites-" 			then ChangeAdjustPanel("Whites","negativ")        
@@ -80,7 +82,8 @@ function ExecuteFunction()
 	elseif BefehlString == "Vignet-" 			then ChangeAdjustPanel("PostCropVignetteAmount","negativ")
 	
 	elseif BefehlString == "Contrast0" 			then ChangeAdjustPanel("Contrast","zero")
-	elseif BefehlString == "Temp0" 				then ChangeAdjustPanel("Temperature","zero")
+    elseif BefehlString == "Temp0" 				then ChangeAdjustPanel("Temperature","zero")
+    elseif BefehlString == "Tint0" 				then ChangeAdjustPanel("Tint","zero")
 	elseif BefehlString == "Shadows0" 			then ChangeAdjustPanel("Shadows","zero")        
 	elseif BefehlString == "Blacks0" 			then ChangeAdjustPanel("Blacks","zero")        
 	elseif BefehlString == "Whites0" 			then ChangeAdjustPanel("Whites","zero")        
@@ -148,7 +151,9 @@ function ExecuteFunction()
 	elseif BefehlString == "Devel"		then ChangeModule("develop")
 
 	elseif BefehlString == "Verb"		then StartAsync();
-	elseif BefehlString == "Kill"		then EndAsync();
+    elseif BefehlString == "Kill"		then EndAsync();
+        
+    elseif BefehlString == "Driver"		then StartDriver();
 
 	else LrDialogs.message( "Befehl wurde nicht erkannt", TestString, "info" )
 	end

@@ -7,23 +7,32 @@ local LrApplicationView   = import 'LrApplicationView'
 local LrSelection = import 'LrSelection'
 local LrUndo = import 'LrUndo'
 
-local LrView = import 'LrView'
+--local LrView = import 'LrView'
+
+--local LrFileUtils = import 'LrFileUtils'
+--local LrPathUtils = import 'LrPathUtils'
+--local LrBinding = import 'LrBinding'
+--local LrPrefs = import 'LrPrefs'
+--local LrShell = import 'LrShell'
+--local f = LrView.osFactory()
+
+--local bind = LrView.bind
+--local prefs = LrPrefs.prefsForPlugin()
 
 require "Limits"
 require "CopyPasteVar"
 require "ExecuteFunc"
 
 ----------------- Global Variabel  ----------------
+TestString		= "NIL"
 WertString    	= "NIL"
 BefehlString  	= "NIL"
 WertChar 		= 0 
 
 LastView		= "loupe"
 KillAllTask 	= false
-
---MyLrView		= LrView.osFactory();
---MyLrView:checkbox("title:Hallo")
 ----------------- Global Variabel  ----------------
+
 ---------------- StartAsync Function --------------
 function StartAsync()
 
@@ -35,21 +44,22 @@ function StartAsync()
 	----LrDialogs.message( "Async", ReturnValue, "info" )
 	
 end
-	
 ---------------- StartAsync Function --------------
+
 ---------------- EndAsync Function --------------
 function EndAsync()
 	
 	KillAllTask = true
 	
 end
-	
 ---------------- EndAsync Function --------------
+
 ---------------- Socket Function ----------------
 
 	-- Ausgestzt. Code befindet sich in Entwiklung.lua
 
----------------- Socket Function ----------------
+---------------- Socket Function ---------------
+
 ---------------- AsyncTest Function ---------------
 function AsyncTest(context)
 
@@ -102,8 +112,8 @@ function AsyncTest(context)
 	-- LrTasks.sleep(5)
 	-- LrDialogs.showBezel( "I bi tot", 3 )
 end
-	
 ---------------- AsyncTest Function ---------------
+
 --------------- BlackWhite Function ---------------
 function BlackWhite()
 -- Wechselt aktuelles Bild zwischen Graustufen und Farben. 
@@ -117,25 +127,34 @@ function BlackWhite()
 	end
 
 end
-
 --------------- BlackWhite Function ---------------
+
 --------------- StartDriver Function --------------
 function StartDriver()
 -- Startet automatisch den zu diesem Plugin dazugehörigen Treiber LR_Connect.
 -- !!! Dazu muss der korrekte Pfad angegeben werden !!!
--- Funktioniert nicht unter macOS.
+-- Funktioniert nicht unter macOS wenn Lightroom aus AppStore stammt.
 	
+	local command = "NIL"
+	local pluginPath = "\Users\danie\Documents\01_Software\01_GitHub\03_Lightroom_Treiber\Lightroom_Treiber\LRSocket\bin\Debug"
+	local filePath = "NIL"
+
+	LrDialogs.message( "Treiber wird gestartet", TestString, "info" )
+
 	-- Pfad hier angeben
-	LrTasks.execute("cd C:\Users\danie\Desktop\F3gR44gr5gaFGS")
+	--LrTasks.execute("cd C:\Users\danie\Desktop")
 	-- Name des Programmes hier angeben 
-	LrTasks.execute("LR_USB.exe")
-	LrDialogs.message( Test, Test, "info" )
-	
+	--LrTasks.execute("LR_USB.exe")
+	command = string.format('"start /D "%s\\bin" /B convert.exe "%s""', pluginPath, filePath)
+	command = string.format('"start C:%sLRSocket.exe "%s"', pluginPath)
+	command = string.format('"start C://Users//danie//Documents//01_Software//01_GitHub//03_Lightroom_Treiber//Lightroom_Treiber//LRSocket//bin//Debug//LRSocket.exe"')
+	LrTasks.execute(command)
+
+	LrDialogs.message( "Treiber gestartet", TestString, "info" )	
 end
-
 --------------- StartDriver Function --------------
---------------- BevorAfter Function ---------------
 
+--------------- BevorAfter Function ---------------
 function BevorAfter()
 -- Wechselt zwischen verschiedenen Ansichchten.
 	if 		LastView == "loupe" then LastView = "develop_before";
@@ -150,21 +169,19 @@ function BevorAfter()
 	LrApplicationView.showView(LastView)
 
 end
-		
 --------------- BevorAfter Function --------------
------------- BevorAfterReset Function ------------
 
+------------ BevorAfterReset Function ------------
 function BevorAfterReset()
 -- Setzt die Ansicht auf die Lupe zurück.
 
 		LastView = "loupe";
 		LrApplicationView.showView(LastView)
 	
-end
-		
+end		
 --------------- BevorAfter Function --------------
-------------------- Up Function ------------------
 
+------------------- Up Function ------------------
 function Up()
 -- Befindet man sich im Modus Libary wird das oberste Bild angewählt.
 -- Befindet man sich im Mouds Develop wird etwas in das Bild hineingezoomt.
@@ -178,10 +195,9 @@ function Up()
 	end
 
 end
-		
 ------------------- Up Function ------------------
------------------- Down Function -----------------
 
+------------------ Down Function -----------------
 function Down()
 -- Befindet man sich im Modus Libary wird das unterste Bild angewählt.
 -- Befindet man sich im Mouds Develop wird etwas in das Bild herausgezoomt.
@@ -194,41 +210,37 @@ function Down()
 	else LrDialogs.message( "Nur in Bibliothek und Entwicklung verfügbar", TestString, "info" )
 	end
 
-end
-			
+end	
 ------------------ Down Function -----------------
------------------- Right Function ----------------
 
+------------------ Right Function ----------------
 function Right()
 -- Es wird das nächste Bild ausgewählt
 
 	LrSelection.nextPhoto()
 
 end
-				
 ------------------ Right Function ----------------
------------------- Left Function -----------------
 
+------------------ Left Function -----------------
 function Left()
 -- Es wird das vorherige Bild ausgewählt
 	
 	LrSelection.previousPhoto()
 		
 end
-
 ------------------ Left Function -----------------
------------------- Rate Function -----------------
 
+------------------ Rate Function -----------------
 function Rate(Bewertung)
 -- Ändert die Bewertung eines Bildes.
 		
 	LrSelection.setRating(Bewertung)
 	
 end
-
 ------------------ Rate Function -----------------
------------------- Redo Function -----------------
 
+------------------ Redo Function -----------------
 LrUndo.redo()
 function Redo(Richtung)
 -- Bearbeitungsschritt widerherstellen oder wiederholen.
@@ -236,10 +248,9 @@ function Redo(Richtung)
 	LrUndo.redo(Richtung)
 		
 end
-
 ------------------ Redo Function -----------------
----------------- ChangeLum Function ---------------
 
+---------------- ChangeLum Function ---------------
 function ChangeLum()
 -- Lässt das Panel Luminanz erscheinen.
 
@@ -248,11 +259,9 @@ function ChangeLum()
 	LrDevelopController.revealPanel("LuminanceAdjustmentRed")				-- Pop Up Menü
 
 end
-	
-
 ---------------- ChangeLum Function ---------------
----------------- ChangeSat Function ---------------
 
+---------------- ChangeSat Function ---------------
 function ChangeSat()
 -- Lässt das Panel Saturation in erscheinen.
 	
@@ -261,11 +270,9 @@ function ChangeSat()
 	LrDevelopController.revealPanel("SaturationAdjustmentRed")				-- Pop Up Menü
 	
 end
-	
-
 ---------------- ChangeSat Function ---------------
----------------- ChangeHue Function ---------------
 
+---------------- ChangeHue Function ---------------
 function ChangeHue()
 -- Lässt das Panel HUE erscheinen.
 
@@ -273,15 +280,15 @@ function ChangeHue()
 	LrApplicationView.switchToModule('develop')		-- Change Module
 	LrDevelopController.revealPanel("HueAdjustmentRed")				-- Pop Up Menü
 end
-	
 ---------------- ChangeHue Function ---------------
------------------- Copy Function ------------------
 
+------------------ Copy Function ------------------
 function Copy()
 -- Kopiert die den Wert der Grössen des aktuellen Bildes.
 
 	Contrast		= LrDevelopController.getValue("Contrast");
 	Temp			= LrDevelopController.getValue("Temperature");
+	Tint 			= LrDevelopController.getValue("Tint");
 	Shadows			= LrDevelopController.getValue("Shadows");
 	Whites			= LrDevelopController.getValue("Whites");
 	Blacks			= LrDevelopController.getValue("Blacks");
@@ -314,18 +321,18 @@ function Copy()
 	HueMagenta		= LrDevelopController.getValue("HueAdjustmentMagenta");
 	SatMagenta		= LrDevelopController.getValue("SatAdjustmentMagenta");
 	LumMagenta		= LrDevelopController.getValue("LumAdjustmentMagenta");
-	Vignet			= LrDevelopController.getValue("PostCropVignetteAmount")
+	--Vignet			= LrDevelopController.getValue("PostCropVignetteAmount")
 
 end
-	
 ------------------ Copy Function ------------------
------------------- Paste Function -----------------
 
+------------------ Paste Function -----------------
 function Paste()
 -- Fügt die Werte in die entsprechenden Grössen des aktuellen Bildes ein.
     
 	LrDevelopController.setValue("Contrast",Contrast);
 	LrDevelopController.setValue("Temperature",Temp);
+	LrDevelopController.setValue("Tint",Tint);
 	LrDevelopController.setValue("Shadows",Shadows);
 	LrDevelopController.setValue("Whites",Whites);
 	LrDevelopController.setValue("Blacks",Blacks);
@@ -358,11 +365,11 @@ function Paste()
 	LrDevelopController.setValue("HueAdjustmentMagenta",HueMagenta);
 	LrDevelopController.setValue("SatAdjustmentMagenta",SatMagenta);
 	LrDevelopController.setValue("LumAdjustmentMagenta",LumMagenta);
-	LrDevelopController.setValue("PostCropVignetteAmount",Vignet);
+	--LrDevelopController.setValue("PostCropVignetteAmount",Vignet);
 	
 end
-	
 ------------------ Paste Function ------------------
+
 ------------------ Pick Function ------------------
 
 function Pick()
@@ -381,6 +388,7 @@ function Pick()
 end
 	
 ------------------ Pick Function ------------------
+
 ----------- switchToFullscreen Function -----------
 
 function switchToFullscreen()
@@ -401,15 +409,17 @@ function switchToFullscreen()
 end
 	
 ----------- switchToFullscreen Function -----------
+
 ------------------ Zoom Function ------------------
 
 function Zoom()
-
+-- Wechselt zwischen denn letzten beiden Zoomstufen.
 	LrApplicationView.toggleZoom()
 
 end
 
 ------------------ Zoom Function ------------------
+
 --------------- ChangeModule Function -------------
 
 function ChangeModule(Module)
@@ -423,15 +433,16 @@ function ChangeModule(Module)
 end
 
 --------------- ChangeModule Function -------------
+
 -------------- ChangeExposure Function ------------ 
 
 function ChangeExposure(Groesse,Richtung)
 -- Ändert die Grösse Exposure 
 	
 	local valueDevelopt = 0
-	-- In den Entwicklungsmodus wechseln und aktuellen bearbeiteten Wert Anzeigen(ausgeschaltet).
+	-- In den Entwicklungsmodus wechseln und aktuellen bearbeiteten Wert Anzeigen(eingeschaltet).
 	LrApplicationView.switchToModule('develop')		
-	--LrDevelopController.revealPanel(Groesse)		
+	LrDevelopController.revealPanel(Groesse)		
 
 	-- Wandelt Float in einen 100x grösseren Integer um.
 	valueDevelopt = LrDevelopController.getValue(Groesse);
@@ -457,6 +468,7 @@ function ChangeExposure(Groesse,Richtung)
 end
 	
 -------------- ChangeExposure Function ------------
+
 ----------- ChangeAdjustPanel Function  -----------
 
 function ChangeAdjustPanel(Groesse,Richtung)
@@ -464,29 +476,45 @@ function ChangeAdjustPanel(Groesse,Richtung)
 
 	local valueDevelopt = 0
 
-	-- In den Entwicklungsmodus wechseln und aktuellen bearbeiteten Wert Anzeigen(ausgeschaltet).
+	-- In den Entwicklungsmodus wechseln und aktuellen bearbeiteten Wert Anzeigen(eingeschaltet).
 	LrApplicationView.switchToModule('develop')	
-	--LrDevelopController.revealPanel(Groesse)		
+	LrDevelopController.revealPanel(Groesse)
 
 	-- Änderung der Richtung feststellen und Wert dementsprechend ändern.
-	valueDevelopt = LrDevelopController.getValue(Groesse); 
+	valueDevelopt = LrDevelopController.getValue(Groesse);
+				TestString = string.format("Es wurde der Wert %u gelesen", valueDevelopt) 
+				LrDialogs.message( TestString, TestString, "info" )
 	if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
 	elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
 	elseif	Richtung == "zero"	  then valueDevelopt = 0;
 	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
 	end	   
 
-	-- Begrenzungen, damit es nicht zu einem Überlauf einer Grösse kommt.
-	if valueDevelopt > LimitsHigh["Standard"] then valueDevelopt = LimitsHigh["Standard"]
-	elseif valueDevelopt < LimitsLow["Standard"] then valueDevelopt = LimitsLow["Standard"] 
-	else valueDevelopt = valueDevelopt
-	end
+			TestString = string.format("Es befindet sich nun der Wert %u in valueDevelop", valueDevelopt) 
+			LrDialogs.message( TestString, TestString, "info" )
 
-	LrDevelopController.setValue(Groesse,valueDevelopt);
+	
+	-- Aufgrund eines Bugs im LUA Compailer von Lightroom dürfen grosse Werte nicht Verglichen werden. Temperatur fällt in diese Kategorie
+	if Groesse == "Temperature" then LrDevelopController.setValue(Groesse,valueDevelopt);
+	else
+		-- Begrenzungen, damit es nicht zu einem Überlauf einer Grösse kommt.
+		if valueDevelopt > LimitsHigh[Groesse] then valueDevelopt = LimitsHigh[Groesse]
+			TestString = string.format("Es befindet sich bei überlauftest der Wert %u in valueDevelop", valueDevelopt) 
+			LrDialogs.message( TestString, TestString, "info" )
+		elseif valueDevelopt < LimitsLow[Groesse] then valueDevelopt = LimitsLow[Groesse]
+			TestString = string.format("Es befindet sich bei unterlauftest der Wert %u in valueDevelop", valueDevelopt) 
+			LrDialogs.message( TestString, TestString, "info" ) 
+		else valueDevelopt = valueDevelopt
+			TestString = string.format("Es befindet sich nach allen Tests der Wert %u in valueDevelop", valueDevelopt) 
+			LrDialogs.message( TestString, TestString, "info" ) 
+		end
+		LrDevelopController.setValue(Groesse,valueDevelopt);
+	end
 
 end
 
 ----------- ChangeAdjustPanel Function  -----------
+
 ----------------- Match Function  -----------------
 
 function MatchString(myString)
@@ -510,6 +538,7 @@ function MatchString(myString)
 end
 
 ----------------- Match Function  -----------------
+
 ----------------- Test Function  ------------------
 
 function TestFunction(TestString)
@@ -519,6 +548,7 @@ function TestFunction(TestString)
 
 end
 ----------------- Test Function  ------------------
+
 -------------- ASCIItoChar Function  --------------
 
 function ASCIItoChar(WertASCII)
@@ -559,6 +589,7 @@ function ASCIItoChar(WertASCII)
 end
 	
 -------------- ASCIItoChar Function  --------------
+
 -------------  Receiver Socket Task  --------------
 
 LrTasks.startAsyncTask( 
@@ -567,10 +598,13 @@ LrTasks.startAsyncTask(
 		-- Erzeugt einen TCP Empfangssocket auf Port 4242 und nimmt eine Verbindung an.
 		-- Wird ein String empfangen, wird dieser erkannt(MatchString und ASCIItoChar) und die Execute Function ausgeführt
 		
+		StartDriver()
+
 		local running = true
 		
 			local remote = LrSocket.bind 
 			{
+				
 				functionContext = context,
 				port = 4242,
 				plugin = _PLUGIN,
@@ -583,7 +617,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:1.0592", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:1.084 ", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()

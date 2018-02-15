@@ -3,6 +3,7 @@
 LimitsLow	= {}
 LimitsLow["Standard"]						= -100
 LimitsLow["Temperatur"]						= 2000
+LimitsLow["Tint"]						    = -150
 LimitsLow["Exposure"]						= -500
 LimitsLow["Tint"]							= -150
 LimitsLow["Contrast"]						= -100
@@ -43,7 +44,8 @@ LimitsLow["PostCropVignetteAmount"]			= -100
 
 LimitsHigh	= {}
 LimitsHigh["Standard"] 						= 100
-LimitsHigh["Temperatur"]					= 50000
+LimitsHigh["Temperatur"]					= 5000
+LimitsLow["Tint"]						    = 150
 LimitsHigh["Exposure"]						= 500
 LimitsHigh["Tint"]							= 150
 LimitsHigh["Contrast"]						= 100

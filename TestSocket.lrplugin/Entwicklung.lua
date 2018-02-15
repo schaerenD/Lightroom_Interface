@@ -8,12 +8,17 @@
 
 
 
+-- Auslesen eines Wertes aus 
+    
+    TestString = string.format("Es wurde der Wert %u gelesen", valueDevelopt) 
+    LrDialogs.message( TestString, TestString, "info" )
+
+
+
 -- Meldungen erzeugen
 
     LrDialogs.message( "Befehl wurde nicht erkannt", TestString, "info" )
         
-
-
 
 -- Async Task Funktionen
 
