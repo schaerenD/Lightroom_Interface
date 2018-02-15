@@ -229,8 +229,13 @@ end
 --------------- BlackWhite Function ---------------
 --------------- StartDriver Function --------------
 function StartDriver()
+	-- Startet automatisch den zu diesem Plugin dazugehörigen Treiber LR_Connect.
+	-- !!! Dazu muss der korrekte Pfad angegeben werden !!!
+	-- Funktioniert nicht unter macOS.
 	
+	-- Pfad hier angeben
 	LrTasks.execute("cd C:\Users\danie\Desktop\F3gR44gr5gaFGS")
+	-- Name des Programmes hier angeben 
 	LrTasks.execute("LR_USB.exe")
 	LrDialogs.message( Test, Test, "info" )
 	
@@ -254,11 +259,11 @@ function BevorAfter()
 
 end
 		
-	
 --------------- BevorAfter Function --------------
 ------------ BevorAfterReset Function ------------
 
 function BevorAfterReset()
+-- Setzt die Ansicht auf die Lupe zurück.
 
 		LastView = "loupe";
 		LrApplicationView.showView(LastView)
@@ -269,25 +274,32 @@ end
 ------------------- Up Function ------------------
 
 function Up()
+-- Befindet man sich im Modus Libary wird das oberste Bild angewählt.
+-- Befindet man sich im Mouds Develop wird etwas in das Bild hineingezoomt.
 	
 	local CurrentModule = ""
+
 	CurrentModule = LrApplicationView.getCurrentModuleName()
 	if CurrentModule == "library" then LrSelection.selectFirstPhoto()	
-	else LrApplicationView.zoomInSome()
+	elseif CurrentModule == "develop" then LrApplicationView.zoomInSome()
+	else LrDialogs.message( "Nur in Bibliothek und Entwicklung verfügbar", TestString, "info" )
 	end
 
 end
 		
-	
 ------------------- Up Function ------------------
 ------------------ Down Function -----------------
 
 function Down()
+-- Befindet man sich im Modus Libary wird das unterste Bild angewählt.
+-- Befindet man sich im Mouds Develop wird etwas in das Bild herausgezoomt.
 	
 	local CurrentModule = ""
+
 	CurrentModule = LrApplicationView.getCurrentModuleName()
 	if CurrentModule == "library" then LrSelection.selectLastPhoto()	
-	else LrApplicationView.zoomOutSome()
+	elseif CurrentModule == "develop" then  LrApplicationView.zoomOutSome()
+	else LrDialogs.message( "Nur in Bibliothek und Entwicklung verfügbar", TestString, "info" )
 	end
 
 end
@@ -297,7 +309,9 @@ end
 ---------------- ChangeLum Function ---------------
 
 function ChangeLum()
+-- Lässt das Panel Luminanz erscheinen.
 
+	-- In den Entwicklungsmodus wechseln und aktuellen bearbeiteten Wert Anzeigen(ausgeschaltet).
 	LrApplicationView.switchToModule('develop')		-- Change Module
 	LrDevelopController.revealPanel("LuminanceAdjustmentRed")				-- Pop Up Menü
 
@@ -308,7 +322,9 @@ end
 ---------------- ChangeSat Function ---------------
 
 function ChangeSat()
-
+-- Lässt das Panel Saturation in erscheinen.
+	
+	-- In den Entwicklungsmodus wechseln und aktuellen bearbeiteten Wert Anzeigen(ausgeschaltet).
 	LrApplicationView.switchToModule('develop')		-- Change Module
 	LrDevelopController.revealPanel("SaturationAdjustmentRed")				-- Pop Up Menü
 	
@@ -319,7 +335,9 @@ end
 ---------------- ChangeHue Function ---------------
 
 function ChangeHue()
-	
+-- Lässt das Panel HUE erscheinen.
+
+	-- In den Entwicklungsmodus wechseln und aktuellen bearbeiteten Wert Anzeigen(ausgeschaltet).
 	LrApplicationView.switchToModule('develop')		-- Change Module
 	LrDevelopController.revealPanel("HueAdjustmentRed")				-- Pop Up Menü
 end
@@ -328,6 +346,7 @@ end
 ------------------ Copy Function ------------------
 
 function Copy()
+-- Kopiert die den Wert der Grössen des aktuellen Bildes.
 
 	Contrast		= LrDevelopController.getValue("Contrast");
 	Temp			= LrDevelopController.getValue("Temperature");
@@ -364,15 +383,14 @@ function Copy()
 	SatMagenta		= LrDevelopController.getValue("SatAdjustmentMagenta");
 	LumMagenta		= LrDevelopController.getValue("LumAdjustmentMagenta");
 	Vignet			= LrDevelopController.getValue("PostCropVignetteAmount")
-	
-	--
-	
+
 end
 	
 ------------------ Copy Function ------------------
 ------------------ Paste Function -----------------
 
 function Paste()
+-- Fügt die Werte in die entsprechenden Grössen des aktuellen Bildes ein.
     
 	LrDevelopController.setValue("Contrast",Contrast);
 	LrDevelopController.setValue("Temperature",Temp);
@@ -416,13 +434,13 @@ end
 ------------------ Pick Function ------------------
 
 function Pick()
-	
+-- Ist das Aktuelle Bild nicht markiert, wird dieses als angenommen markiert
+-- Ist das Aktuelle Bild als angenommen markiert, wird dieses als abgelehnt markiert
+-- Ist das Aktuelle Bild als abgelehnt markiert, wird die Markierung entfernt
+
 	local isPicked = 0
 	
 	isPicked = LrSelection.getFlag() 
-
-	---- LrDialogs.message( isPicked, isPicked, "info" )
-	
 	if isPicked == 0 then LrSelection.flagAsPick()
 	elseif isPicked == 1 then LrSelection.flagAsReject()
 	else LrSelection.removeFlag()
@@ -434,13 +452,15 @@ end
 ----------- switchToFullscreen Function -----------
 
 function switchToFullscreen()
+-- Wenn ein zweites Display angeschlossen ist, wird dieses in den Vollbidlmodus gewechselt.
+-- Beim erneuten betätigen wechselt der externe Bildschirm wieder in die vorherige Ansicht.
 	
 	local IsDisplayOn
 
 	IsDisplayOn = LrApplicationView.isSecondaryDisplayOn()
 
 	if	IsDisplayOn == false then LrApplicationView.toggleSecondaryDisplay()
-	else 					
+	else LrDialogs.message( "Kein externer Monitor angeschlossen", TestString, "info" )					
 	end							
 
 	LrApplicationView.toggleSecondaryDisplayFullscreen()
@@ -449,34 +469,36 @@ function switchToFullscreen()
 end
 	
 ----------- switchToFullscreen Function -----------
--------------- ChangeExposure Function ------------
+-------------- ChangeExposure Function ------------ 
 
 function ChangeExposure(Groesse,Richtung)
+-- Ändert die Grösse Exposure 
 	
-		local valueDevelopt = 0
-		
-		LrApplicationView.switchToModule('develop')		-- Change Module
-		LrDevelopController.revealPanel(Groesse)		-- Pop Up Menü
-	
-		valueDevelopt = LrDevelopController.getValue(Groesse);
-		valueDevelopt = 100*valueDevelopt;
+	local valueDevelopt = 0
+	-- In den Entwicklungsmodus wechseln und aktuellen bearbeiteten Wert Anzeigen(ausgeschaltet).
+	LrApplicationView.switchToModule('develop')		
+	--LrDevelopController.revealPanel(Groesse)		
 
+	-- Wandelt Float in einen 100x grösseren Integer um.
+	valueDevelopt = LrDevelopController.getValue(Groesse);
+	valueDevelopt = 100*valueDevelopt;
 
+	-- Änderung der Richtung feststellen und Wert dementsprechend ändern.
+	if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
+	elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
+	elseif	Richtung == "zero"	  then valueDevelopt = 0;
+	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
+	end
 
-		if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
-		elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
-		elseif	Richtung == "zero"	  then valueDevelopt = 0;
-		else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
-		end
+	-- Begrenzungen, damit es nicht zu einem Überlauf einer Grösse kommt.
+	if valueDevelopt > LimitsHigh[Groesse] then valueDevelopt = LimitsHigh[LimitsHigh]
+	elseif valueDevelopt < LimitsLow[Groesse] then valueDevelopt = LimitsLow[Groesse] 
+	else valueDevelopt = valueDevelopt
+	end
 
-		-- Begrenzungen
-		if valueDevelopt > LimitsHigh[Groesse] then valueDevelopt = LimitsHigh[LimitsHigh]
-		elseif valueDevelopt < LimitsLow[Groesse] then valueDevelopt = LimitsLow[Groesse] 
-		else valueDevelopt = valueDevelopt
-		end
-
-		valueDevelopt = valueDevelopt/100;	   
-		LrDevelopController.setValue(Groesse,valueDevelopt);
+	-- Wandelt Integer wieder in einen 100x kleineren Float.
+	valueDevelopt = valueDevelopt/100;	   
+	LrDevelopController.setValue(Groesse,valueDevelopt);
 	
 end
 	
@@ -484,12 +506,15 @@ end
 ----------- ChangeAdjustPanel Function  -----------
 
 function ChangeAdjustPanel(Groesse,Richtung)
+	-- Ändert eine Grösse am aktullen Bild mit Ausnahme von Exposure
 
 	local valueDevelopt = 0
 
-	LrApplicationView.switchToModule('develop')		-- Change Module
-	LrDevelopController.revealPanel(Groesse)		-- Pop Up Menü
+	-- In den Entwicklungsmodus wechseln und aktuellen bearbeiteten Wert Anzeigen(ausgeschaltet).
+	LrApplicationView.switchToModule('develop')	
+	--LrDevelopController.revealPanel(Groesse)		
 
+	-- Änderung der Richtung feststellen und Wert dementsprechend ändern.
 	valueDevelopt = LrDevelopController.getValue(Groesse); 
 	if     	Richtung == "positiv" then valueDevelopt = valueDevelopt + WertChar;                             
 	elseif 	Richtung == "negativ" then valueDevelopt = valueDevelopt - WertChar;
@@ -497,7 +522,7 @@ function ChangeAdjustPanel(Groesse,Richtung)
 	else	LrDialogs.message( "Das hat nicht geklappt", "ChangeAdjustPanel", "info" )
 	end	   
 
-	-- Begrenzungen
+	-- Begrenzungen, damit es nicht zu einem Überlauf einer Grösse kommt.
 	if valueDevelopt > LimitsHigh["Standard"] then valueDevelopt = LimitsHigh["Standard"]
 	elseif valueDevelopt < LimitsLow["Standard"] then valueDevelopt = LimitsLow["Standard"] 
 	else valueDevelopt = valueDevelopt
@@ -511,10 +536,10 @@ end
 ----------------- Execute Function  ---------------
 
 function ExecuteFunction()
+-- Erkennt welcher Befehl bearbeitet werden soll oder gibt ansonsten einen Fehler aus.
 
 	local valueDevelopt
 	
-    -- Fakultaet(message)
 	if     BefehlString == "Contrast+" 			then ChangeAdjustPanel("Contrast","positiv")
 	elseif BefehlString == "Temp+" 				then ChangeAdjustPanel("Temperature","positiv")	                            
 	elseif BefehlString == "Shadows+" 			then ChangeAdjustPanel("Shadows","positiv")        
@@ -659,27 +684,16 @@ function ExecuteFunction()
 
 	elseif BefehlString == "Verb"		then StartAsync();
 	elseif BefehlString == "Kill"		then EndAsync();
-		
-	-- elseif BefehlString == "Test1"		then LrApplicationView.switchToModule('develop');;
-	-- elseif BefehlString == "Test2"		then LrApplicationView.switchToModule('develop');;
-	-- elseif BefehlString == "Test3"		then if  then end;;
-	-- elseif BefehlString == "Test4"		then ConvertToGrayscale();
-	-- elseif BefehlString == "Test5"		then ConvertToGrayscale();
-	-- elseif BefehlString == "Test6"		then ConvertToGrayscale();	
 
-		
-	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
+	else LrDialogs.message( "Befehl wurde nicht erkannt", TestString, "info" )
 	end
-
-	----LrDialogs.showBezel( WertChar, 2 )
-
 end
 
 ----------------- Execute Function  --------------- 
 ----------------- Match Function  -----------------
 
 function MatchString(myString)
-    
+-- Aus dem Übergebenen Sting wird der der aktuelle Befehl entnommen und der dazugehörige Wert entnommen.    
   
  local i = 0
  local BefehlsWert = {}
@@ -693,8 +707,6 @@ function MatchString(myString)
 	
     BefehlString = BefehlsWert[0]
     WertString = BefehlsWert[1]
-	----LrDialogs.message( BefehlString, myString, "info" )
-	----LrDialogs.message( WertString, myString, "info" )
 	
     return "Done"
     
@@ -704,15 +716,16 @@ end
 ----------------- Test Function  ------------------
 
 function TestFunction(TestString)
+	-- Only Lonly Testfunktion zum schnellen Testen von Befehlen.
 
 	LrDialogs.message( TestString, "Das hat geklappt", "info" )
-	--if message =="Test+" then LrDevelopController.increment ( "Exposure" ) end
 
 end
 ----------------- Test Function  ------------------
 -------------- ASCIItoChar Function  --------------
 
 function ASCIItoChar(WertASCII)
+	-- Umwandlung eines  Zahlenstring im ASCII-Format in ein Lua Kompatibles Format(z.B. char) 
 	
 	local i = 1
 	local q = 1
@@ -749,11 +762,13 @@ function ASCIItoChar(WertASCII)
 end
 	
 -------------- ASCIItoChar Function  --------------
--- Receiver Socket Task
---
+-------------  Receiver Socket Task  --------------
+
 LrTasks.startAsyncTask( 
 	function() LrFunctionContext.callWithContext( 'socket_remote', 
 		function( context )
+		-- Erzeugt einen TCP Empfangssocket auf Port 4242 und nimmt eine Verbindung an.
+		-- Wird ein String empfangen, wird dieser erkannt(MatchString und ASCIItoChar) und die Execute Function ausgeführt
 		
 		local running = true
 		
@@ -779,23 +794,11 @@ LrTasks.startAsyncTask(
 					
 					MatchString(message)
 					ASCIItoChar(WertString)
-					---TestFunction("Bis ASCIItoChar")
-					---TestFunction(BefehlString)
-					---TestFunction(WertString)
-					---TestFunction("Bis Switch Modul")
 					ExecuteFunction()
-					---TestFunction("Bis Execute Function")
-					LrDialogs.showBezel( BefehlString, 2 )
-					---TestFunction("Bis Bezel")
-
-					--LrDialogs.message( "Text", "4242", "info" )
-					--if message =="+" then LrDevelopController.increment ( "Exposure" ) end
-					--if message =="-" then LrDevelopController.decrement ( "Exposure" ) end	
 				end,
 				
 				--Funktion OnClosed()
 				onClosed = function( socket )
-					--running = false
 					socket:reconnect()
 				end,
 				
@@ -817,107 +820,4 @@ LrTasks.startAsyncTask(
 end 
 )
 
---LrTasks.startAsyncTask(
-	--function() LrFunctionContext.callWithContext( 'socket_remote', 
-		--function( context )
-		
-			--local running = true
-			-- local sender = LrSocket.bind
-			-- {
-			-- 	 functionContext = context,
-			-- 	 port = 4243, -- (let the OS assign the port)
-			-- 	 plugin = _PLUGIN,
-			-- 	 mode = "send",
-			-- 	 onConnecting = function( socket, port )
-			-- 		-- TODO
-			-- 	 end,
-			-- 	 onConnected = function( socket, port )
-			-- 		LrDialogs.message( "Conncectd!", "", "info" )
-			-- 	 end,
-			-- 	 onMessage = function( socket, message )
-			-- 		 LrDialogs.message( "Message!" .. message, "", "info" )
-			-- 		-- nothing, we don't expect to get any messages back from a send port
-			-- 	 end,
-			-- 	 onClosed = function( socket )
-			-- 		--LrDialogs.message( "Disconnect!", "", "info" )
-			-- 		running = false
-			-- 	 end,
-			-- 	 onError = function( socket, err )
-			-- 		LrDialogs.message( "Error: " .. err, "", "info" )
-			-- 		if err == "timeout" then
-			-- 			socket:reconnect()
-			-- 		end
-			-- 	 end,
-			-- }
-			-- sender:close()
-			--while running do
-				--sender:send( "reconnect in 10s\n" ) --immer MIT \n ---!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				--LrTasks.sleep(10) -- seconds
-				--sender:reconnect()
-			--end	
-    --end )
- --end
-
-
-
-
-
---Sender Socket Task
---
---LrTasks.startAsyncTask( 
---	function() LrFunctionContext.callWithContext( 'socket_remote', 
---		function( context )
---		
---		local running = true
---		local connected = false
---		
---			local sender = LrSocket.bind 
---			{
---				functionContext = context,
---				port = 4243,
---				plugin = _PLUGIN,
---				mode = "send",
---				
---				--Funktion OnConnecting()
---				onConnecting = function( socket, port )
---				-- TODO
---				end,
---				
---				--Funktion OnConnect()
---				onConnected = function( socket, port ) 
---					LrDialogs.message( "Connection established", "4243", "info" )
---					connected = true;
---				end,
---				
---				--Funktion OnMessage()
---				onMessage = function( socket, message )
---					
---					--LrDialogs.message( "Text", "4242", "info" )
---					--if message =="+" then LrDevelopController.increment ( "Exposure" ) end
---					--if message =="-" then LrDevelopController.decrement ( "Exposure" ) end	
---				end,
---				
---				--Funktion OnClosed()
---				onClosed = function( socket )
---					--running = false
---					socket:reconnect()
---				end,
---				
---				--Funktion OnError()
---				onError = function( socket, err )
---					if err == "timeout" then
---						socket:reconnect()
---					end
---				end,
---			}
---
---		while running do
---			LrTasks.sleep( 1 ) -- seconds
---			if connected == true then sender.send("gugus") end
---		end
---		LrDialogs.message( "Endlosschlaufe beendet (Socket Task)", "", "info" )
---		sender:close()
---	end 
---end 
---	)
---)
+-------------  Receiver Socket Task  --------------
