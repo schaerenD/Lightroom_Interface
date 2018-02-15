@@ -21,7 +21,7 @@ return {
   LrForceInitPlugin = true,  
   LrInitPlugin = 'Client.lua', -- Main client logic
   
-  LrPluginName = 'MIDI2LR',
+  LrPluginName = 'Lightroom_Plugin',
   LrSdkMinimumVersion = 6.0, -- minimum SDK version required by this plug-in
   LrSdkVersion = 6.0,
   LrShutdownPlugin = '',

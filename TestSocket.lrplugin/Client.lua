@@ -14,7 +14,7 @@ WertString    	= "NIL"
 BefehlString  	= "NIL"
 WertChar 		= 0 
 
-LastView		="loupe"
+LastView		= "loupe"
 KillAllTask 	= false
 
 Contrast		= 0
@@ -220,8 +220,8 @@ function BlackWhite()
 
 	isGrayscale = LrDevelopController.getValue("ConvertToGrayscale")
 	LrApplicationView.switchToModule('develop')		-- Change Module
-	if isGrayscale == false then LrDevelopController.setValue("ConvertToGrayscale",true)	
-	else LrDevelopController.setValue("ConvertToGrayscale",false)
+	if isGrayscale == false then LrDevelopController.revealPanel("GrayMixerBlue")	
+	else LrDevelopController.revealPanel("SaturationAdjustmentRed")
 	end
 
 end
@@ -439,8 +439,9 @@ function switchToFullscreen()
 
 	IsDisplayOn = LrApplicationView.isSecondaryDisplayOn()
 
-	--if	IsDisplayOn == false then LrApplicationView.toggleSecondaryDisplay()					
-	--end							
+	if	IsDisplayOn == false then LrApplicationView.toggleSecondaryDisplay()
+	else 					
+	end							
 
 	LrApplicationView.toggleSecondaryDisplayFullscreen()
 	
@@ -448,9 +449,8 @@ function switchToFullscreen()
 end
 	
 ----------- switchToFullscreen Function -----------
-
-
 -------------- ChangeExposure Function ------------
+
 function ChangeExposure(Groesse,Richtung)
 	
 		local valueDevelopt = 0
@@ -478,11 +478,9 @@ function ChangeExposure(Groesse,Richtung)
 		valueDevelopt = valueDevelopt/100;	   
 		LrDevelopController.setValue(Groesse,valueDevelopt);
 	
-	end
+end
 	
-
 -------------- ChangeExposure Function ------------
-
 ----------- ChangeAdjustPanel Function  -----------
 
 function ChangeAdjustPanel(Groesse,Richtung)
@@ -660,7 +658,15 @@ function ExecuteFunction()
 	elseif BefehlString == "Devel"		then LrApplicationView.switchToModule('develop')
 
 	elseif BefehlString == "Verb"		then StartAsync();
-	elseif BefehlString == "Kill"		then EndAsync();	 
+	elseif BefehlString == "Kill"		then EndAsync();
+		
+	-- elseif BefehlString == "Test1"		then LrApplicationView.switchToModule('develop');;
+	-- elseif BefehlString == "Test2"		then LrApplicationView.switchToModule('develop');;
+	-- elseif BefehlString == "Test3"		then if  then end;;
+	-- elseif BefehlString == "Test4"		then ConvertToGrayscale();
+	-- elseif BefehlString == "Test5"		then ConvertToGrayscale();
+	-- elseif BefehlString == "Test6"		then ConvertToGrayscale();	
+
 		
 	else    LrDialogs.message( "Das hat nicht geklappt", TestString, "info" )
 	end
@@ -765,7 +771,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:127", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:141", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
@@ -781,7 +787,6 @@ LrTasks.startAsyncTask(
 					---TestFunction("Bis Execute Function")
 					LrDialogs.showBezel( BefehlString, 2 )
 					---TestFunction("Bis Bezel")
-
 
 					--LrDialogs.message( "Text", "4242", "info" )
 					--if message =="+" then LrDevelopController.increment ( "Exposure" ) end
@@ -913,6 +918,6 @@ end
 --		LrDialogs.message( "Endlosschlaufe beendet (Socket Task)", "", "info" )
 --		sender:close()
 --	end 
---	)
 --end 
+--	)
 --)
