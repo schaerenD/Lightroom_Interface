@@ -153,7 +153,8 @@ function ExecuteFunction()
 	elseif BefehlString == "Verb"		then StartAsync();
     elseif BefehlString == "Kill"		then EndAsync();
         
-    elseif BefehlString == "Driver"		then StartDriver();
+	elseif BefehlString == "Driver"		then StartDriver();
+	elseif BefehlString == "Test1"		then View();
 
 	else LrDialogs.message( "Befehl wurde nicht erkannt", TestString, "info" )
 	end

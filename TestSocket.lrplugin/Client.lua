@@ -7,21 +7,17 @@ local LrApplicationView   = import 'LrApplicationView'
 local LrSelection = import 'LrSelection'
 local LrUndo = import 'LrUndo'
 
---local LrView = import 'LrView'
-
---local LrFileUtils = import 'LrFileUtils'
---local LrPathUtils = import 'LrPathUtils'
---local LrBinding = import 'LrBinding'
---local LrPrefs = import 'LrPrefs'
---local LrShell = import 'LrShell'
---local f = LrView.osFactory()
-
---local bind = LrView.bind
---local prefs = LrPrefs.prefsForPlugin()
-
 require "Limits"
 require "CopyPasteVar"
 require "ExecuteFunc"
+
+-- BEGIN VIEW
+local LrView = import 'LrView'
+local LrBinding = import 'LrBinding'
+local Etwas
+-- END VIEW
+
+
 
 ----------------- Global Variabel  ----------------
 TestString		= "NIL"
@@ -590,6 +586,30 @@ end
 	
 -------------- ASCIItoChar Function  --------------
 
+------------------ View Function  -----------------
+
+function View()
+
+	LrDialogs.message( "Huler", "Hier und ad", "info" )
+	local myFrame = LrView.osFactory();
+	--local bind = LrView.bind
+	
+	local myDialog = LrDialogs.presentModalDialog() {
+		title 		= 'Min Dialog',
+		resizable 	= true,
+		contents 	= myFrame:column{
+			--bind_to_object = Etwas,
+			myFrame:static_text {
+				title = 'Hello World',
+			},
+		},
+	}
+
+
+end
+
+------------------ View Function  -----------------
+
 -------------  Receiver Socket Task  --------------
 
 LrTasks.startAsyncTask( 
@@ -598,7 +618,7 @@ LrTasks.startAsyncTask(
 		-- Erzeugt einen TCP Empfangssocket auf Port 4242 und nimmt eine Verbindung an.
 		-- Wird ein String empfangen, wird dieser erkannt(MatchString und ASCIItoChar) und die Execute Function ausgeführt
 		
-		StartDriver()
+		--StartDriver()
 
 		local running = true
 		
@@ -617,7 +637,7 @@ LrTasks.startAsyncTask(
 				
 				--Funktion OnConnect()
 				onConnected = function( socket, port ) 
-					LrDialogs.message( "Connection established Vers.:1.084 ", "4242", "info" )
+					LrDialogs.message( "Connection established Vers.:1.094 ", "4242", "info" )
 				end,
 				
 				--Funktion OnMessage()
